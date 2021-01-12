@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="{% static 'style/base.css' %}">
+    {% block page-style %} {% endblock %}
+    <title>{% block page-title %} {% endblock %}</title>
+
+</head>
+<body>
+    <div class="wrap">
+      <header>
+        <nav class="nav-menu">
+          <ul class="nav head-nav">
+            <li class="nav-item item-head-nav">
+                <a class="nav-link" href="{% url 'index' %}">Главная</a>
+            </li>
+            <li class="nav-item item-head-nav">
+                <a class="nav-link" href="{% url 'cats' %}">Кошки</a>
+            </li>
+            <li class="nav-item item-head-nav">
+                <a class="nav-link" href="{% url 'dogs' %}">Собаки</a>
+            </li>
+            <li class="nav-item item-head-nav">
+              <a class="nav-link" href="{% url 'parrots' %}">Попугаи</a>
+            </li>
+            <li class="nav-item item-head-nav">
+                <a class="nav-link" href="{% url 'admin:index' %}">Админка</a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <div class="container">
+        {% block content %}
+        {% endblock %}
+      </div>
+      <footer>
+
+      </footer>
+
+    </div>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    {% block page-script %} {% endblock %}
+</body>
+</html>

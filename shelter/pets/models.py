@@ -1,5 +1,12 @@
 from django.db import models
 from datetime import date
+from django.urls import reverse, reverse_lazy
+
+def path_for_pet_avatar(pet, name):
+  return '{}_{}/{}'.format(pet.name, pet.id, name)
+
+def path_for_pet_img(obj, name):
+  return '{}_{}/{}'.format(obj.pet.name, obj.pet.id, name)
 
 class Pet(models.Model):
   name = models.CharField(max_length=100, default='Пока без имени', help_text='Укажите кличку животного', verbose_name='Кличка')
@@ -20,23 +27,22 @@ class Pet(models.Model):
   approximate_age = models.SmallIntegerField(null= True, verbose_name='Возраст')
   available = models.BooleanField(default=True, verbose_name='Доступен')
   description = models.TextField(verbose_name='Описание')
-  avatar = models.ImageField(upload_to='pet_avatars/%Y/%m/%d', blank=True, verbose_name="Аватар") # Переделать путь. Сохранять аватарку в папку "img/Кличка_id/"
+  avatar = models.ImageField(upload_to= path_for_pet_avatar, blank=True, verbose_name="Аватар")
 
   class Meta:
-    ordering = ["-name"]
+    ordering = ["name"]
     verbose_name = 'Питомец'
     verbose_name_plural = 'Питомцы'
 
   def get_absolute_url(self):
-    pass
-    # return reverse('model-detail-view', args=[str(self.id)])
+    return reverse('pet-detail', args=[str(self.id)])
   
   def __str__(self):
     return self.name
 
 class Photo(models.Model):
   pet = models.ForeignKey(Pet, on_delete = models.CASCADE, related_name='photos', blank=True, null=True)
-  photo = models.ImageField(upload_to='pet_photos/%Y/%m/%d', blank=True, verbose_name="Фото") # Переделать путь. Сохранять фотки в папку "img/Кличка_id/"
+  photo = models.ImageField(upload_to=path_for_pet_img, blank=True, verbose_name="Фото")
   uplaod_date = models.DateField(auto_now=True, verbose_name='Дата загрузки фото')
 
   class Meta:
@@ -48,6 +54,9 @@ class Photo(models.Model):
     if self.photo and hasattr(self.photo, 'url'):
       return self.photo.url
 
+  def __str__(self):
+    return self.photo.name.split('/')[1]
+
 
 class Client(models.Model):
   name = models.CharField(max_length=100, verbose_name='Имя')
@@ -58,7 +67,7 @@ class Client(models.Model):
   address = models.TextField(blank=True, null=True, verbose_name='Адрес')
 
   class Meta:
-    ordering = ["-surname"]
+    ordering = ["surname"]
     verbose_name = 'Клиент'
     verbose_name_plural = 'Клиенты'
   

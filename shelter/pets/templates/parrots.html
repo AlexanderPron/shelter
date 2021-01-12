@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block page-style %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'catalog/style/pets.css' %}">
+{% endblock %}
+{% block page-title %} Попугаи {% endblock %}
+
+{% block content %}
+    <h2 class = "head-title">Наши попугайчики</h2> <br>
+      <ul>
+        {% for parrot in parrots %}
+          <li><a href="{{ parrot.get_absolute_url }}">{{ parrot.name }}</a></li>
+        {% endfor %}
+      </ul>
+
+{% endblock %}

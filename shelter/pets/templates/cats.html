@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block page-style %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'catalog/style/pets.css' %}">
+{% endblock %}
+{% block page-title %} Кошки {% endblock %}
+
+{% block content %}
+    <h2 class = "head-title">Наши кошечки</h2> <br>
+      <ul>
+        {% for cat in cats %}
+          <li><a href="{{ cat.get_absolute_url }}">{{ cat.name }}</a></li>
+        {% endfor %}
+      </ul>
+
+{% endblock %}

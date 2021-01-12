@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block page-style %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'catalog/style/pets.css' %}">
+{% endblock %}
+{% block page-title %} {{ pet.name }} {% endblock %}
+
+{% block content %}
+  <p> Здравствуйте! Меня зовут {{ pet.name }}</p> <br>
+  <p> Мне {{ pet.approximate_age }} месяцев</p> <br>
+  <p> Я очень хотел-бы жить с вами</p> <br>
+
+{% endblock %}
