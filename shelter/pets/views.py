@@ -46,7 +46,7 @@ def sheltered_page(request):
 
 def pet_detail_page(request, pk):
   template = loader.get_template('pet_detail.html')
-  pet = Pet.objects.all().filter(id = pk)
+  pet = Pet.objects.get(id = pk)
   photos = Photo.objects.filter(pet__id=pk)
   data_list = {
       "pet": pet,

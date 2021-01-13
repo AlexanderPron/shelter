@@ -6,11 +6,12 @@
 {% block page-title %} {{ pet.name }} {% endblock %}
 
 {% block content %}
-  {{ pet }}
-  {{ photos}}
   <p> Здравствуйте! Меня зовут {{ pet.name }}</p> <br>
-  <p> Мне {{ pet.approximate_age }} месяцев</p> <br>
+  <p> Мне {{ pet.approximate_age }} месяцев</p> <br>  <!-- Переделать возраст, надо вычислять "примерный возраст при поступлении + (текущая дата - дата поступления)", перевести в месяцы-->
   <p> Я очень хотел-бы жить с вами</p> <br>
+  {% for photo in photos %}
+  <img src="{{ photo.photo_url }}" width="200" alt="">
+  {% endfor %}
 
 
 {% endblock %}
