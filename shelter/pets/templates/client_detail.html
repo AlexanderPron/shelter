@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block page-style %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'catalog/style/pets.css' %}">
+{% endblock %}
+{% block page-title %} {{ client.name }} {% endblock %}
+
+{% block content %}
+<p>{{client.surname}} {{client.name}}</p> 
+<p>Почта: {{client.email}}</p> 
+
+{% endblock %}

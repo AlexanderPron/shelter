@@ -6,8 +6,11 @@
 {% block page-title %} {{ pet.name }} {% endblock %}
 
 {% block content %}
+  {{ pet }}
+  {{ photos}}
   <p> Здравствуйте! Меня зовут {{ pet.name }}</p> <br>
   <p> Мне {{ pet.approximate_age }} месяцев</p> <br>
   <p> Я очень хотел-бы жить с вами</p> <br>
+
 
 {% endblock %}

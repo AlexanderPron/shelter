@@ -10,7 +10,9 @@ urlpatterns = [
   path('cats/', views.cats_page, name='cats'),
   path('dogs/', views.dogs_page, name='dogs'),
   path('parrots/', views.parrots_page, name='parrots'),
-  url(r'^pets/(?P<pk>\d+)$', views.PetDetailView.as_view(), name='pet-detail'),
+  path('sheltered/', views.sheltered_page, name='sheltered'),
+  url(r'^pets/(?P<pk>\d+)$', views.pet_detail_page, name='pet-detail'),
+  url(r'^clients/(?P<pk>\d+)$', views.ClientDetailView.as_view(), name='client-detail'),
 
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

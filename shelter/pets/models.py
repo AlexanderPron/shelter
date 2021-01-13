@@ -33,6 +33,11 @@ class Pet(models.Model):
     ordering = ["name"]
     verbose_name = 'Питомец'
     verbose_name_plural = 'Питомцы'
+  
+  @property
+  def avatar_url(self):
+    if self.avatar and hasattr(self.avatar, 'url'):
+      return self.avatar.url
 
   def get_absolute_url(self):
     return reverse('pet-detail', args=[str(self.id)])
@@ -73,6 +78,9 @@ class Client(models.Model):
   
   def __str__(self):
     return '{} {}'.format(self.name, self.surname)
+  
+  def get_absolute_url(self):
+    return reverse('client-detail', args=[str(self.id)])
 
 class ShelteredPets(models.Model):
   pet = models.ForeignKey(Pet, on_delete = models.CASCADE, related_name='pets', verbose_name='Питомец')
@@ -89,7 +97,7 @@ class ShelteredPets(models.Model):
       pass   # Вывести какое-то предупреждение, что этого питомца выбрать нельзя
 
   class Meta:
-    ordering = ["sheltered_date"]
+    ordering = ["-sheltered_date"]
     verbose_name = 'Устроенные животные'
     verbose_name_plural = 'Устроенные животные'
   

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block page-style %}
     {% load static %}
-    <link rel="stylesheet" href="{% static 'catalog/style/index.css' %}">
+    <link rel="stylesheet" href="{% static 'style/index.css' %}">
 {% endblock %}
 {% block page-title %} Котопёс {% endblock %}
 
@@ -10,6 +10,7 @@
   <h2> Наши новички: </h2> <br>
   <ul>
     {% for pet in lastPets %}
+      <li><a href="{{ pet.get_absolute_url }}"><img src="{{ pet.avatar_url }}" width="200" alt="{{ pet.name }}"></a></li>
       <li><a href="{{ pet.get_absolute_url }}">{{ pet.name }}</a></li>
     {% endfor %}
   </ul>
