@@ -1,0 +1,10 @@
+.wrap{
+  margin: 0 auto;
+  width: 80%;
+}
+.nav-menu{
+  display: flex;
+}
+.head-nav{
+  display: inline;
+}

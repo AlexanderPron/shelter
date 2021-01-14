@@ -9,6 +9,7 @@
     <h2 class = "head-title">Наши кошечки</h2> <br>
       <ul>
         {% for cat in cats %}
+          <li><a href="{{ cat.get_absolute_url }}"><img src="{{ cat.avatar_url }}" width="200" alt="{{ cat.name }}"></a></li>
           <li><a href="{{ cat.get_absolute_url }}">{{ cat.name }}</a></li>
         {% endfor %}
       </ul>

@@ -54,9 +54,6 @@ def pet_detail_page(request, pk):
   }
   return HttpResponse(template.render(data_list, request))
 
-# class PetDetailView(generic.DetailView):
-#     model = Pet
-#     template_name = 'pet_detail.html'
 
 class ClientDetailView(generic.DetailView):
     model = Client

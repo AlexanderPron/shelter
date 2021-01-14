@@ -9,6 +9,7 @@
     <h2 class = "head-title">Наши собачки</h2> <br>
       <ul>
         {% for dog in dogs %}
+          <li><a href="{{ dog.get_absolute_url }}"><img src="{{ dog.avatar_url }}" width="200" alt="{{ dog.name }}"></a></li>
           <li><a href="{{ dog.get_absolute_url }}">{{ dog.name }}</a></li>
         {% endfor %}
       </ul>
