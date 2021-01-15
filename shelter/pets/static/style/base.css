@@ -8,3 +8,12 @@
 .head-nav{
   display: inline;
 }
+.down-part{
+  height: 151px;
+  width: 100%;
+}
+.shelter-pic{
+  height: 151px;
+  width: 100%;
+  background-color: rgb(27, 160, 71);
+}

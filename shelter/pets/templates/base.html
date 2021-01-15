@@ -12,28 +12,47 @@
 <body>
     <div class="wrap">
       <header>
-        <nav class="nav-menu">
-          <ul class="nav head-nav">
-            <li class="nav-item item-head-nav">
-                <a class="nav-link" href="{% url 'index' %}">Главная</a>
-            </li>
-            <li class="nav-item item-head-nav">
-                <a class="nav-link" href="{% url 'cats' %}">Кошки</a>
-            </li>
-            <li class="nav-item item-head-nav">
-                <a class="nav-link" href="{% url 'dogs' %}">Собаки</a>
-            </li>
-            <li class="nav-item item-head-nav">
-              <a class="nav-link" href="{% url 'parrots' %}">Попугаи</a>
-            </li>
-            <li class="nav-item item-head-nav">
-              <a class="nav-link" href="{% url 'sheltered' %}">Нашли хозяев</a>
-            </li>
-            <li class="nav-item item-head-nav">
-                <a class="nav-link" href="{% url 'admin:index' %}">Админка</a>
-            </li>
-          </ul>
-        </nav>
+        <div class="upper-part">
+          <nav class="nav-menu">
+            <ul class="nav head-nav">
+              <li class="nav-item item-head-nav">
+                  <a class="nav-link" href="{% url 'index' %}">Главная</a>
+              </li>
+              <li class="nav-item item-head-nav">
+                  <a class="nav-link" href="{% url 'cats' %}">Кошки</a>
+              </li>
+              <li class="nav-item item-head-nav">
+                  <a class="nav-link" href="{% url 'dogs' %}">Собаки</a>
+              </li>
+              <li class="nav-item item-head-nav">
+                <a class="nav-link" href="{% url 'parrots' %}">Попугаи</a>
+              </li>
+              <li class="nav-item item-head-nav">
+                <a class="nav-link" href="{% url 'sheltered' %}">Нашли хозяев</a>
+              </li>
+              <li class="nav-item item-head-nav">
+                  <a class="nav-link" href="{% url 'admin:index' %}">Админка</a>
+              </li>
+            </ul>
+          </nav>
+          <div class="login-form">
+            <form action="" method="POST">
+              <input class="login-input" type="text" placeholder="Логин">
+              <input class="pass-input" type="password" placeholder="Пароль">
+              <button type="submit">Войти</button>
+            </form>
+          </div>
+        </div>
+        <div class="down-part">
+          <div class="logo">
+
+          </div>
+          <div class="shelter-pic">
+
+          </div>
+
+        </div>
+
       </header>
       <div class="container">
         {% block content %}
