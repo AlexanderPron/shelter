@@ -1,12 +1,128 @@
+html {
+  overflow-x: hidden;
+  margin-right: calc(-1 * (100vw - 100%));
+}
+
+body{
+  background-color: #F4F760;
+  box-sizing: border-box;
+}
+
 .wrap{
   margin: 0 auto;
   width: 80%;
 }
-.nav-menu{
+.upper-part{
+  display: flex;
+  justify-content: space-between;
+  padding-top: 30px;
+  background-color: #F4F760;
+}
+/* =========== Стили навигации ==========================*/
+.navbar {
+  overflow: hidden;
+  background-color: #F4F760;
+  margin: 0;
+}
+
+.navbar a {
+  float: left;
+  font-size: 20px;
+  color: #7D410D;
+  text-align: center;
+  padding: 10px 12px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+  position: static;
+}
+
+.dropdown {
+  font-size: 20px;  
+  border: none;
+  outline: none;
+  color: #7D410D;
+  padding: 0;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+  font-weight: bold;
+}
+.nav-main-item, .dropbtn {
+  color: #7D410D;
+  font-size: 20px;  
+  padding: 10px 12px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  border-radius: 15%;
+  border-top: 2px solid  #F4F760;
+  border-bottom: 2px solid  #F4F760;
+  width: 170px;
+}
+.nav-main-item:hover, .dropbtn:hover{
+  border-radius: 15%;
+  border-top: 2px solid  rgba(0,0,0,0.33);
+  border-bottom: 2px solid  rgba(0,0,0,0.33);
+  font-size: 22px;
+
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: rgba(0,0,0,.33);
+  border-radius: 10%;
+  z-index: 1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+  float: none;
+  color:  #7D410D;
+  font-size: 16px;
+  padding: 12px 16px;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  text-decoration: underline;
+  font-size: 20px;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* ============================================ */
+.head-nav{
   display: flex;
 }
-.head-nav{
-  display: inline;
+.login-form{
+  margin: 0;
+  text-align: end;
+}
+.form-div{
+  display: flex;
+  align-items: center; 
+  justify-content: end;
+}
+form .login-input{
+  margin-bottom: 0;
+  width: 20%;
+}
+form .pass-input{
+  margin-bottom: 0;
+  width: 20%;
 }
 .down-part{
   height: 151px;
@@ -15,5 +131,15 @@
 .shelter-pic{
   height: 151px;
   width: 100%;
-  background-color: rgb(27, 160, 71);
+  background-color: #F4F760;
+  position: relative;
+}
+.catdog-img1{
+  position: absolute;
+  left: 20%;
+  height: 151px;
+}
+.catdog-img2{
+  position: absolute;
+  right: 5%;
 }
