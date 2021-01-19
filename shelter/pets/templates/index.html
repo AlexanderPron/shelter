@@ -6,32 +6,40 @@
 {% block page-title %} Котопёс {% endblock %}
 
 {% block content %}
-<div class="left-side">
-  <p class="all-pet-title"> Наши питомцы: </p>
-  <div class="all-pets-list">
-    {% for pet in allPets %}
-    <div class="all-pet-card">
-      <a href="{{ pet.get_absolute_url }}"><img src="{{ pet.avatar_url }}" class="all-pet-card-img" alt="{{ pet.name }}">
-      <p class="all-pet-name"> {{ pet.name }} </p>
-      </a>
+<div class="main-content">
+  <div class="left-side-review">
+    <p class="review-title"> Отзывы о нас: </p>
+
+  </div>
+  <div class="main-side">
+    <p class="all-pet-title"> Наши питомцы: </p>
+    <div class="all-pets-list">
+      {% for pet in allPets %}
+      <div class="all-pet-card">
+        <a href="{{ pet.get_absolute_url }}"><img src="{{ pet.avatar_url }}" class="all-pet-card-img" alt="{{ pet.name }}">
+        <p class="all-pet-name"> {{ pet.name }} </p>
+        </a>
+      </div>
+  
+  {% endfor %}
+  
     </div>
-
-{% endfor %}
-
+  
+  </div>
+  <div class="right-side">
+    <p class="newbie-pet-title"> Наши новички: </p> <br>
+      {% for pet in lastPets %}
+          <div class="newbie-pet-card">
+            <a href="{{ pet.get_absolute_url }}"><img src="{{ pet.avatar_url }}" class="newbie-pet-card-img" alt="{{ pet.name }}">
+            <p class="newbie-pet-name"> {{ pet.name }} </p>
+            </a>
+          </div>
+  
+      {% endfor %}
+  
   </div>
 
 </div>
-<div class="right-side">
-  <p class="newbie-pet-title"> Наши новички: </p> <br>
-    {% for pet in lastPets %}
-        <div class="newbie-pet-card">
-          <a href="{{ pet.get_absolute_url }}"><img src="{{ pet.avatar_url }}" class="newbie-pet-card-img" alt="{{ pet.name }}">
-          <p class="newbie-pet-name"> {{ pet.name }} </p>
-          </a>
-        </div>
 
-    {% endfor %}
-
-</div>
 
 {% endblock %}

@@ -1,6 +1,15 @@
-.left-side{
+.main-content{
+  display: flex;
+}
+.left-side-review{
+  display: inline-block;
+  width: 20%;
+  border-right: 2px solid rgb(165,123,26);
+  margin-top: 50px;
+}
+.main-side{
   display: block;
-  width: 70%;
+  width: 60%;
   margin-top: 50px;
 }
 .all-pets-list{
@@ -25,14 +34,12 @@
 }
 
 .right-side{
-  width: 25%;
+  width: 20%;
   border-left: 2px solid rgb(165,123,26);
   display: inline-block;
-  text-align: center;
-  justify-content: center;
   margin-top: 50px;
 }
-.newbie-pet-title, .all-pet-title{
+.review-title, .newbie-pet-title, .all-pet-title{
   color:#7D410D;
   font-size: 2em;
   text-align: center;

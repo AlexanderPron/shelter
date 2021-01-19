@@ -4,17 +4,13 @@ html {
 }
 
 body{
-  background-color: #F4F760;
   box-sizing: border-box;
 }
-
-.wrap{
+/* .wrap{
+  display: block;
   margin: 0 auto;
   width: 80%;
-}
-.container{
-  display: flex;
-}
+} */
 .upper-part{
   display: flex;
   justify-content: space-between;
@@ -142,9 +138,10 @@ form .pass-input{
   height: 151px;
   width: 100%;
   background-color: #F4F760;
-  position: relative;
+  /* position: relative; */
 }
-.catdog-img1{
+.shelter-pic > 
+.row .catdog-img1{
   position: absolute;
   left: 20%;
   height: 151px;
