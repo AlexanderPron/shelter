@@ -6,11 +6,13 @@ from django.views import generic
 
 def index(request):
   template = loader.get_template('index.html')
+  allPets = Pet.objects.all()
   lastPets = reversed(Pet.objects.order_by('enter_date')[:4]) # Выбираем последних 4-х питомцев, поступивших в приют
-  last_pets = {
+  pets = {
       "lastPets": lastPets,
+      "allPets": allPets,
   }
-  return HttpResponse(template.render(last_pets, request))
+  return HttpResponse(template.render(pets, request))
 
 def cats_page(request):
   template = loader.get_template('cats.html')

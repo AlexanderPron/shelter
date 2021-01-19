@@ -17,9 +17,7 @@
             <img class="catdog-img1" src="{% static 'img\site_imgs\catdog.png' %}" alt="">
             <img class="catdog-img2" src="{% static 'img\site_imgs\shelter-pic.jpg' %}" alt="">
           </div>
-
         </div>
-
         <div class="upper-part">
           <div class="navbar">
             <a class="nav-main-item" href="{% url 'index' %}">Главная</a>
@@ -34,15 +32,18 @@
             <a class="nav-main-item" href="{% url 'sheltered' %}">Нашли хозяев</a>
             <a class="nav-main-item" href="{% url 'admin:index' %}">Админка</a>
           </div>
-          <div class="form-div">
+          <!-- <div class="form-div">
             <form class="login-form" action="" method="POST">
               {% csrf_token %} 
               <input class="login-input" type="text" placeholder="Логин">
               <input class="pass-input" type="password" placeholder="Пароль">
               <button type="submit">Войти</button>
             </form>
+          </div> -->
+          <div class="auth-div">
+            <span>Добро пожаловать в наш приют,ГОСТЬ</span>
+            <a href="#" class="reg-log">Вход и регистрация</a>
           </div>
-
         </div>
 
       </header>

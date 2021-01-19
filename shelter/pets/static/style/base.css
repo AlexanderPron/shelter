@@ -12,6 +12,9 @@ body{
   margin: 0 auto;
   width: 80%;
 }
+.container{
+  display: flex;
+}
 .upper-part{
   display: flex;
   justify-content: space-between;
@@ -30,9 +33,9 @@ body{
   font-size: 20px;
   color: #7D410D;
   text-align: center;
-  padding: 10px 12px;
+  padding: 6px 2px;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: normal;
 }
 
 .dropdown {
@@ -55,23 +58,25 @@ body{
 .nav-main-item, .dropbtn {
   color: #7D410D;
   font-size: 20px;  
-  padding: 10px 12px;
+  padding: 6px 2px;
   background-color: inherit;
   font-family: inherit;
   margin: 0;
-  font-weight: bold;
+  font-weight: normal;
   border: none;
   outline: none;
   border-radius: 15%;
   border-top: 2px solid  #F4F760;
   border-bottom: 2px solid  #F4F760;
-  width: 170px;
+  max-width: 170px;
+  margin-right: 10px;
 }
 .nav-main-item:hover, .dropbtn:hover{
   border-radius: 15%;
   border-top: 2px solid  rgba(0,0,0,0.33);
   border-bottom: 2px solid  rgba(0,0,0,0.33);
-  font-size: 22px;
+  text-shadow: 1px -1px 1px rgb(165,123,26), 2px -2px 2px;
+  transition: all 0.5s;
 
 }
 
@@ -96,7 +101,8 @@ body{
 
 .dropdown-content a:hover {
   text-decoration: underline;
-  font-size: 20px;
+  transition: all 0.5s;
+  text-shadow: 1px -1px 1px rgb(165,123,26), 2px -2px 2px;
 }
 
 .dropdown:hover .dropdown-content {
@@ -123,6 +129,10 @@ form .login-input{
 form .pass-input{
   margin-bottom: 0;
   width: 20%;
+}
+
+.reg-log{
+  color: #7D410D;
 }
 .down-part{
   height: 151px;
