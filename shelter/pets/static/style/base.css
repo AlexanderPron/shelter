@@ -11,6 +11,14 @@ body{
   margin: 0 auto;
   width: 80%;
 } */
+.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+}
+.col, [class*="col-"] {
+    padding-right: 0;
+    padding-left: 0;
+  }
 .upper-part{
   display: flex;
   justify-content: space-between;
@@ -140,13 +148,14 @@ form .pass-input{
   background-color: #F4F760;
   /* position: relative; */
 }
-.shelter-pic > 
-.row .catdog-img1{
-  position: absolute;
-  left: 20%;
+/* .shelter-pic >  */
+.catdog-img1{
+  /* position: absolute;
+  left: 20%; */
   height: 151px;
 }
 .catdog-img2{
-  position: absolute;
-  right: 5%;
+  /* position: absolute;
+  right: 5%; */
+  height: 151px;
 }
