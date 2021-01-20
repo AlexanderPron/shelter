@@ -30,6 +30,7 @@ body{
   overflow: hidden;
   background-color: #F4F760;
   margin: 0;
+  height: 500px;
 }
 
 .navbar a {
@@ -146,16 +147,15 @@ form .pass-input{
   height: 151px;
   width: 100%;
   background-color: #F4F760;
-  /* position: relative; */
 }
-/* .shelter-pic >  */
 .catdog-img1{
-  /* position: absolute;
-  left: 20%; */
   height: 151px;
 }
 .catdog-img2{
-  /* position: absolute;
-  right: 5%; */
   height: 151px;
+}
+.auth-div{
+  display: flex;
+  align-items: center;
+  justify-content: right;
 }
