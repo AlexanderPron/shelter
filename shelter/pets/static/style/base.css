@@ -2,15 +2,10 @@ html {
   overflow-x: hidden;
   margin-right: calc(-1 * (100vw - 100%));
 }
-
 body{
   box-sizing: border-box;
+  background-color: black;
 }
-/* .wrap{
-  display: block;
-  margin: 0 auto;
-  width: 80%;
-} */
 .no-gutters {
   margin-right: 0;
   margin-left: 0;
@@ -18,19 +13,16 @@ body{
 .col, [class*="col-"] {
     padding-right: 0;
     padding-left: 0;
+    height: 100%;
   }
-.upper-part{
-  display: flex;
-  justify-content: space-between;
-  padding-top: 30px;
-  background-color: #F4F760;
-}
 /* =========== Стили навигации ==========================*/
 .navbar {
   overflow: hidden;
   background-color: #F4F760;
   margin: 0;
-  height: 500px;
+  height: 100px;
+  display: flex;
+  justify-content: flex-start;
 }
 
 .navbar a {
@@ -88,9 +80,9 @@ body{
 .dropdown-content {
   display: none;
   position: absolute;
+  z-index: 1;
   background-color: rgba(0,0,0,.33);
   border-radius: 10%;
-  z-index: 1;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
@@ -115,47 +107,41 @@ body{
 }
 
 /* ============================================ */
-.head-nav{
-  display: flex;
-}
-.login-form{
-  margin: 0;
-  text-align: end;
-}
-.form-div{
-  display: flex;
-  align-items: center; 
-  justify-content: end;
-}
-form .login-input{
-  margin-bottom: 0;
-  width: 20%;
-}
-form .pass-input{
-  margin-bottom: 0;
-  width: 20%;
-}
-
-.reg-log{
-  color: #7D410D;
-}
-.down-part{
-  height: 151px;
-  width: 100%;
-}
 .shelter-pic{
-  height: 151px;
+  height: 150px;
   width: 100%;
   background-color: #F4F760;
 }
 .catdog-img1{
-  height: 151px;
+  object-fit: cover;
+  height: 100%;
 }
 .catdog-img2{
-  height: 151px;
+  object-fit: cover;
+  height: 100%;
 }
 .auth-div{
   display: flex;
-  align-items: center;
-  justify-content: right;
+  justify-content: flex-end;
+  color: #7D410D;
+}
+.auth-div > span{
+  font-size: 20px;
+  margin-right: 10px;
+  margin-left: 10px;
+  padding-top: 8px;
+}
+.auth-div > a{
+  font-size: 16px;
+  color: #c0118b;
+  padding-bottom: 0;
+  padding-top: 12px;
+}
+.main{
+  height: 500px;
+  background-color: #F4F760;
+}
+.footer{
+  height: 100px;
+  background-color: #7D410D;
 }
