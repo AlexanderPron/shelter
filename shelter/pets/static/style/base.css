@@ -17,30 +17,20 @@ body{
   }
 /* =========== Стили навигации ==========================*/
 .navbar {
-  overflow: hidden;
-  background-color: #F4F760;
+  background-color:  #7D410D;
   margin: 0;
-  height: 100px;
   display: flex;
-  justify-content: flex-start;
+  justify-content: flex-end;
 }
-
 .navbar a {
   float: left;
   font-size: 20px;
-  color: #7D410D;
+  color:  #F4F760;
   text-align: center;
   padding: 6px 2px;
   text-decoration: none;
   font-weight: normal;
 }
-
-.dropdown {
-  float: left;
-  overflow: hidden;
-  position: static;
-}
-
 .dropdown {
   font-size: 20px;  
   border: none;
@@ -51,9 +41,12 @@ body{
   font-family: inherit;
   margin: 0;
   font-weight: bold;
+  float: left;
+  overflow: hidden;
+  position: static;
 }
 .nav-main-item, .dropbtn {
-  color: #7D410D;
+  color: #F4F760;
   font-size: 20px;  
   padding: 6px 2px;
   background-color: inherit;
@@ -63,8 +56,8 @@ body{
   border: none;
   outline: none;
   border-radius: 15%;
-  border-top: 2px solid  #F4F760;
-  border-bottom: 2px solid  #F4F760;
+  border-top: 2px solid  #7D410D;
+  border-bottom: 2px solid  #7D410D;
   max-width: 170px;
   margin-right: 10px;
 }
@@ -77,7 +70,7 @@ body{
 
 }
 
-.dropdown-content {
+.dropdown .dropdown-content {
   display: none;
   position: absolute;
   z-index: 1;
@@ -123,23 +116,19 @@ body{
 .auth-div{
   display: flex;
   justify-content: flex-end;
-  color: #7D410D;
+  color:  #F4F760;
 }
 .auth-div > span{
   font-size: 20px;
   margin-right: 10px;
   margin-left: 10px;
-  padding-top: 8px;
+  padding-top: 6px;
 }
 .auth-div > a{
   font-size: 16px;
   color: #c0118b;
   padding-bottom: 0;
-  padding-top: 12px;
-}
-.main{
-  height: 500px;
-  background-color: #F4F760;
+  padding-top: 10px;
 }
 .footer{
   height: 100px;
