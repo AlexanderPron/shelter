@@ -117,6 +117,7 @@ body{
   display: flex;
   justify-content: flex-end;
   color:  #F4F760;
+  padding-right: 20px;
 }
 .auth-div > span{
   font-size: 20px;

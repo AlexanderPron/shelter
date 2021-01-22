@@ -3,14 +3,24 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from .models import Pet, ShelteredPets, Client, Photo
 from django.views import generic
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def index(request):
   template = loader.get_template('index.html')
-  allPets = Pet.objects.all()
   lastPets = reversed(Pet.objects.order_by('enter_date')[:4]) # Выбираем последних 4-х питомцев, поступивших в приют
+  allPets = Pet.objects.all()
+  paginator = Paginator(allPets, 6)
+  page = request.GET.get('page')
+  try:
+    paginationPets = paginator.page(page)
+  except PageNotAnInteger:
+    paginationPets = paginator.page(1)
+  except EmptyPage:
+    paginationPets = paginator.page(paginator.num_pages)
+  
   pets = {
       "lastPets": lastPets,
-      "allPets": allPets,
+      "paginationPets": paginationPets,
   }
   return HttpResponse(template.render(pets, request))
 
