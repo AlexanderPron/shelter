@@ -7,9 +7,11 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def index(request):
   template = loader.get_template('index.html')
-  lastPets = reversed(Pet.objects.order_by('enter_date')[:4]) # Выбираем последних 4-х питомцев, поступивших в приют
+  lastPets = Pet.objects.order_by('-enter_date')[:4] # Выбираем последних 4-х питомцев, поступивших в приют
   allPets = Pet.objects.all()
   paginator = Paginator(allPets, 6)
+  numPages = paginator.num_pages
+  numPageList = [i for i in range(1, numPages+1)]
   page = request.GET.get('page')
   try:
     paginationPets = paginator.page(page)
@@ -21,6 +23,7 @@ def index(request):
   pets = {
       "lastPets": lastPets,
       "paginationPets": paginationPets,
+      "numPageList": numPageList,
   }
   return HttpResponse(template.render(pets, request))
 
@@ -60,9 +63,11 @@ def pet_detail_page(request, pk):
   template = loader.get_template('pet_detail.html')
   pet = Pet.objects.get(id = pk)
   photos = Photo.objects.filter(pet__id=pk)
+  numPhotos = [i for i in range(1, photos.count() + 1)]
   data_list = {
       "pet": pet,
       "photos": photos,
+      "numPhotos": numPhotos,
   }
   return HttpResponse(template.render(data_list, request))
 

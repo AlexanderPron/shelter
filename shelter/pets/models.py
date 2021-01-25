@@ -44,6 +44,16 @@ class Pet(models.Model):
   
   def __str__(self):
     return self.name
+  
+  def save(self, *args, **kwargs):  # Переопределяем стандартный метод save(чтобы была возможность добавить в название папки id записи (в момент сохранения записи id ещё не присвоено, поэтому, чтобы получить id, сначала сохраняем запись без картинки, затем дозаписываем картинку )
+    if self.pk is None:
+      saved_image = self.avatar
+      self.avatar = None
+      super(Pet, self).save(*args, **kwargs)
+      self.avatar = saved_image
+      if 'force_insert' in kwargs: # Решение из интернета - иногда возникает какой-то баг с дублированием параметра force_insert
+        kwargs.pop('force_insert')
+    super(Pet, self).save(*args, **kwargs)
 
 class Photo(models.Model):
   pet = models.ForeignKey(Pet, on_delete = models.CASCADE, related_name='photos', blank=True, null=True)

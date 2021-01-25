@@ -19,43 +19,9 @@
 </div>
 <div class="row no-gutters main-content">
   <div class="col-2 left-side-review">
-    
   </div>
   <div class="col-8 main-side-content">
-    <nav aria-label="Page navigation example">
-      <ul class="pagination">
-        <li class="page-item">
-          {% if paginationPets.has_previous %}
-          <a class="page-link" href="#" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-          </a>
-          {% endif %}
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-          {% if paginationPets.has_next %}
-          <a class="page-link" href="#" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-          </a>
-          {% endif %}
-        </li>
-      </ul>
-    </nav>
-    <!-- <div class="pagination">
-      <span class="step-links">
-          {% if paginationPets.has_previous %}
-              <a href="?page={{ paginationPets.previous_page_number }}">Предыдущие</a>
-          {% endif %}
-          <span class="current">
-              Страница {{ paginationPets.number }} из {{ paginationPets.paginator.num_pages }}.
-          </span>
-          {% if paginationPets.has_next %}
-              <a href="?page={{ paginationPets.next_page_number }}">Следующие</a>
-          {% endif %}
-      </span>
-    </div> -->
+    {% include 'paginate.html' %}
     <div class="all-pets-list">
       {% for pet in paginationPets %}
       <div class="all-pet-card">
@@ -65,19 +31,7 @@
       </div>
       {% endfor %}
     </div>
-    <div class="pagination">
-      <span class="step-links">
-          {% if paginationPets.has_previous %}
-              <a href="?page={{ paginationPets.previous_page_number }}">Предыдущие</a>
-          {% endif %}
-          <span class="current">
-              Страница {{ paginationPets.number }} из {{ paginationPets.paginator.num_pages }}.
-          </span>
-          {% if paginationPets.has_next %}
-              <a href="?page={{ paginationPets.next_page_number }}">Следующие</a>
-          {% endif %}
-      </span>
-    </div>
+    {% include 'paginate.html' %}
   </div>
   <div class="col-2 right-side">
     {% for pet in lastPets %}
