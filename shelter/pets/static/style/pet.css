@@ -36,3 +36,10 @@
 .carousel-indicators{
     bottom: -10px;
 }
+.carousel-indicators > li{
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 2px;
+    background-color:#7D410D;
+}
