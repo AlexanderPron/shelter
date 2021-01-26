@@ -1,20 +1,38 @@
 .main-block{
-    display: grid;
     background-color:#F4F760;
 }
-/* .main-content{
+.main-block > h2{
+    padding-top: 20px;
+    text-align: center;
 }
-.carousel-item{
-    width: 50%;
-}
-.carousel-img{
-    object-fit: fill;
-    height: 200px;
-    width: auto;
-} */
 
+.pet-describe-text{
+    color: #7D410D;
+    font-size: 18px;
+}
+
+
+.carousel-img{
+    object-fit: cover;
+    height: -webkit-fill-available;
+    width: 100%;
+    border-radius: 18px;
+}
+
+.carousel, .pet-describe{
+    width: 100%;
+    padding: 30px;
+
+}
 .carousel-inner{
-    height: 400px;
-    width: auto;
-    
+    margin: 0 auto;
+    width: 100%;
+    height: 30vw;
+    border-radius: 20px;
+    border: 2px solid #7D410D;
+    margin: 0 auto;
+    padding: 0;
+}
+.carousel-indicators{
+    bottom: -10px;
 }

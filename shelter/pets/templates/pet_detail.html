@@ -7,40 +7,47 @@
 
 {% block content %}
 <div class="main-block">
+  <h2>{{ pet.name }}</h2>
   <div class="row no-gutters main-content">
-    <div class="col-4 left-side-avatar">
-      <img src="{{ pet.avatar_url }}" alt="" class="avatar-img">
-    </div>
-    <div class="col-8 main-side-describe">
-      <p> Здравствуйте! Меня зовут {{ pet.name }}</p>
-      <p> Мне {{ pet.approximate_age }} месяцев</p> <!-- Переделать возраст, надо вычислять "примерный возраст при поступлении + (текущая дата - дата поступления)", перевести в месяцы-->
-      <p> Я очень хотел-бы жить с вами</p>
-    </div>
-  </div>
-  <div id="carouselExampleIndicators" class="row carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-      {% for i in numPhotos %}
-        <li data-target="#carouselExampleIndicators" data-slide-to="{{ i }}"></li>
-      {% endfor %}
-    </ol>
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img class="d-block w-100 carousel-img" src="{{ pet.avatar_url }}" alt="First slide">
+    <div class="col-6">
+      <div class="pet-describe">
+        <p class="pet-describe-text"> Здравствуйте! Меня зовут <b>{{ pet.name }}</b></p>
+        <span class="pet-describe-text"> Мне {{ pet.approximate_age }} месяцев</br></span> <!-- Переделать возраст, надо вычислять "примерный возраст при поступлении + (текущая дата - дата поступления)", перевести в месяцы-->
+        <span class="pet-describe-text"> И в приюте я с {{ pet.enter_date }}</br></span>
+        <hr>
+        <span class="pet-describe-text"><b>Вот кое-что обо мне:</b></br>{{ pet.description }}</span>
+
       </div>
-        {% for photo in photos %}
-        <div class="carousel-item">
-          <img class="d-block w-100 carousel-img" src="{{ photo.photo_url }}" alt="">
+    </div>
+    <div class="col-6">
+      <div id="carouselExampleIndicators" class="carousel slide" data-interval="false">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          {% for i in numPhotos %}
+            <li data-target="#carouselExampleIndicators" data-slide-to="{{ i }}"></li>
+          {% endfor %}
+        </ol>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img class="d-block carousel-img" src="{{ pet.avatar_url }}" alt="First slide">
+          </div>
+            {% for photo in photos %}
+            <div class="carousel-item">
+              <img class="d-block carousel-img" src="{{ photo.photo_url }}" alt="">
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
+        <!-- <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </a> -->
+      </div>
+
     </div>
-    </div>
-    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    </a>
   </div>
 </div>
+{% endblock %}
+{% block page-script %}
 {% endblock %}
