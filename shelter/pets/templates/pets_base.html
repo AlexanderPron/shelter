@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block page-style %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style/index.css' %}">
+{% endblock %}
+{% block page-title %}
+{% endblock %}
+
+{% block content %}
+  <div class="row no-gutters main-side-content">
+    <div class="col main-side-title">
+      <h2 class="all-pet-title">{% block pet-title %} {% endblock %}</h2>
+    </div>
+  </div>
+  <div class="row no-gutters main-side-content">
+    <div class="col">
+      {% include 'paginate.html' %}
+      <div class="all-pets-list">
+        {% for pet in paginationItems %}
+        <div class="all-pet-card">
+          <a href="{{ pet.get_absolute_url }}"><img src="{{ pet.avatar_url }}" alt="{{ pet.name }}" class="all-pet-card-img">
+          <p class="all-pet-name"> {{ pet.name }} </p>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+      {% include 'paginate.html' %}
+    </div>
+  </div>
+
+{% endblock %}
