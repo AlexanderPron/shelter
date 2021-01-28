@@ -6,6 +6,10 @@ from django.views import generic
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def getPaginationData(request, dataQuerySet, countItemsOnPage):
+# Функция, которая на вход получает запрос с html-страницы, QuerySet результата запроса в базу данных 
+# и целое число, показывающее сколько элементов отображать на странице.
+# На выходе получаем словарь, содержащий paginationItems - countItemsOnPage элементов 
+# и numPageList - массив, содержащий порядковый номер страниц ([1,2,3] - если страниц получилось 3)
   paginator = Paginator(dataQuerySet, countItemsOnPage)
   numPages = paginator.num_pages
   numPageList = [i for i in range(1, numPages+1)]
