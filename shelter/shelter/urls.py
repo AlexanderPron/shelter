@@ -22,3 +22,4 @@ urlpatterns = [
 urlpatterns += [
      path('', include('pets.urls')),
 ]
+

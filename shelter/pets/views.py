@@ -29,27 +29,27 @@ def getPaginationData(request, dataQuerySet, countItemsOnPage):
 
 def index(request):
   template = loader.get_template('index.html')
-  lastPets = Pet.objects.order_by('-enter_date')[:4] # Выбираем последних 4-х питомцев, поступивших в приют
-  allPets = Pet.objects.all()
+  lastPets = Pet.objects.all().filter(available = True).order_by('-enter_date')[:4] # Выбираем последних 4-х доступных питомцев, поступивших в приют
+  allPets = Pet.objects.all().filter(available = True)
   pets = getPaginationData(request, allPets, 6)
   pets["lastPets"] = lastPets
   return HttpResponse(template.render(pets, request))
 
 def cats_page(request):
   template = loader.get_template('cats.html')
-  cats = Pet.objects.all().filter(pet_type = 'Cat')
+  cats = Pet.objects.all().filter(pet_type = 'Cat').filter(available = True)
   cats_list = getPaginationData(request, cats, 6)
   return HttpResponse(template.render(cats_list, request))
 
 def dogs_page(request):
   template = loader.get_template('dogs.html')
-  dogs = Pet.objects.all().filter(pet_type = 'Dog')
+  dogs = Pet.objects.all().filter(pet_type = 'Dog').filter(available = True)
   dogs_list = getPaginationData(request, dogs, 6)
   return HttpResponse(template.render(dogs_list, request))
 
 def parrots_page(request):
   template = loader.get_template('parrots.html')
-  parrots = Pet.objects.all().filter(pet_type = 'Parrot')
+  parrots = Pet.objects.all().filter(pet_type = 'Parrot').filter(available = True)
   parrots_list = getPaginationData(request, parrots, 6)
   return HttpResponse(template.render(parrots_list, request))
 

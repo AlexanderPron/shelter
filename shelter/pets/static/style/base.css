@@ -119,8 +119,8 @@ body{
   color:  #F4F760;
   padding-right: 20px;
 }
-.auth-div > span{
-  font-size: 20px;
+.auth-div > span, .auth-div > span > a{
+  font-size: 16px;
   margin-right: 10px;
   margin-left: 10px;
   padding-top: 6px;
