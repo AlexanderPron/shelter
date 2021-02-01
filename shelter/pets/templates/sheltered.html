@@ -9,7 +9,7 @@
     <h2 class = "head-title">Нашли дом</h2> <br>
       <ul>
         {% for shelteredPet in shelteredPets %}
-          <li><a href="{{ shelteredPet.pet.get_absolute_url }}">{{ shelteredPet.pet.name }}</a> - {{ shelteredPet.sheltered_date }} Новый хозяин: <a href="{{ shelteredPet.owner.get_absolute_url }}">{{ shelteredPet.owner.surname }} {{ shelteredPet.owner.name }}</a></li>
+          <li><a href="{{ shelteredPet.pet.get_absolute_url }}">{{ shelteredPet.pet.name }}</a> - {{ shelteredPet.sheltered_date }} Новый хозяин: <a href="{{ shelteredPet.owner.get_absolute_url }}">{{ shelteredPet.owner.last_name }} {{ shelteredPet.owner.first_name }}</a></li>
         {% endfor %}
       </ul>
 

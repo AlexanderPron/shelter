@@ -1,12 +1,11 @@
 from django.contrib import admin
 from .models import Pet, Client, Photo, ShelteredPets
+from django.contrib.auth.admin import UserAdmin
+
+admin.site.register(Client, UserAdmin)
 
 @admin.register(Pet)
 class PetAdmin(admin.ModelAdmin):
-  pass
-
-@admin.register(Client)
-class ClientAdmin(admin.ModelAdmin):
   pass
 
 @admin.register(Photo)

@@ -126,3 +126,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'pets/static/img')
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '/'
+
+AUTH_USER_MODEL = 'pets.Client'

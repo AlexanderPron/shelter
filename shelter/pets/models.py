@@ -1,6 +1,10 @@
 from django.db import models
 from datetime import date
 from django.urls import reverse, reverse_lazy
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.contrib.auth.models import AbstractUser
 
 def path_for_pet_avatar(pet, name):
   return '{}_{}/{}'.format(pet.name, pet.id, name)
@@ -10,12 +14,13 @@ def path_for_pet_img(obj, name):
 
 class Pet(models.Model):
   name = models.CharField(max_length=100, default='Пока без имени', help_text='Укажите кличку животного', verbose_name='Кличка')
-  PET_TYPE_CHOICES = [
+  PET_TYPE_CHOICES = (
     ('Cat', 'Кошка'),
     ('Dog', 'Собака'),
-    ('Parrot', 'Попугай'),
-  ]
+    ('Parrot', 'Попугай')
+  )
   pet_type = models.CharField(max_length=10, choices=PET_TYPE_CHOICES, default='Cat', verbose_name='Вид') 
+
   breed = models.CharField(max_length=100, default='Неизвестно', help_text='Укажите породу животного', verbose_name='Порода')
   SEX_CHOICES = [
     ('M', 'Мужской'),
@@ -73,24 +78,25 @@ class Photo(models.Model):
     return self.photo.name.split('/')[1]
 
 
-class Client(models.Model):
-  name = models.CharField(max_length=100, verbose_name='Имя')
-  surname = models.CharField(max_length=100, verbose_name='Фамилия')
+class Client(AbstractUser):
+  first_name = models.CharField(max_length=100, default='нет имени' , verbose_name='Имя')
+  last_name = models.CharField(max_length=100, default='нет фамилии', verbose_name='Фамилия')
   patronymic = models.CharField(max_length=100, blank=True, null=True, verbose_name='Отчество')
   phone = models.BigIntegerField(blank=True, null=True, help_text='ТОЛЬКО цифры', verbose_name='Телефон')
   email = models.EmailField(max_length=254, blank=True, null=True, verbose_name='Почта')
   address = models.TextField(blank=True, null=True, verbose_name='Адрес')
 
   class Meta:
-    ordering = ["surname"]
+    ordering = ["last_name"]
     verbose_name = 'Клиент'
     verbose_name_plural = 'Клиенты'
   
   def __str__(self):
-    return '{} {}'.format(self.name, self.surname)
+    return '{} {}'.format(self.first_name, self.last_name)
   
   def get_absolute_url(self):
     return reverse('client-detail', args=[str(self.id)])
+
 
 class ShelteredPets(models.Model):
   pet = models.ForeignKey(Pet, on_delete = models.CASCADE, related_name='pets', verbose_name='Питомец')
