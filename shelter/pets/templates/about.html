@@ -1,12 +1,19 @@
 {% extends 'base.html' %}
 {% block page-style %}
     {% load static %}
-    <link rel="stylesheet" href="{% static 'catalog/style/pets.css' %}">
+    <link rel="stylesheet" href="{% static 'style/pet.css' %}">
 {% endblock %}
 {% block page-title %} О нас {% endblock %}
 
 {% block content %}
-<span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque fuga, nam doloremque corrupti, est, quisquam deleniti molestiae suscipit harum asperiores quaerat! Ipsa deserunt earum officia laudantium, eveniet illum quasi voluptas?</span>
+<div class="main-block">
+    <h2>О нашем приюте</h2>
+    <div class="row no-gutters main-content">
+      <div class="col-12">
+        <span class="about-describe-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque fuga, nam doloremque corrupti, est, quisquam deleniti molestiae suscipit harum asperiores quaerat! Ipsa deserunt earum officia laudantium, eveniet illum quasi voluptas?</span>
+      </div>
+    </div>
+  </div>
 
 
 {% endblock %}

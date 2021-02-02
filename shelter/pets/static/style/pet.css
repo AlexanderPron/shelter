@@ -4,11 +4,15 @@
 .main-block > h2{
     padding-top: 20px;
     text-align: center;
+    color: #7D410D;
+    font-size: 1.2em;
+    font-weight: bold;
 }
 
-.pet-describe-text{
+.pet-describe-text, .about-describe-text{
     color: #7D410D;
     font-size: 18px;
+    word-wrap: break-word;
 }
 
 
@@ -42,4 +46,24 @@
     border-radius: 50%;
     border: 2px;
     background-color:#7D410D;
+}
+p{
+    color:  #7D410D;
+    font-size: 16px;
+}
+li > a{
+    color:  #7D410D;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+}
+li > a:hover{
+    color:  #7D410D;
+    font-weight: bold;
+    text-decoration: underline
+}
+.list-of-sheltered-pet{
+    list-style-type: none;
+    color:  #7D410D;
+
 }

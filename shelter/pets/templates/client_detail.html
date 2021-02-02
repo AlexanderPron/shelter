@@ -1,12 +1,34 @@
 {% extends 'base.html' %}
 {% block page-style %}
     {% load static %}
-    <link rel="stylesheet" href="{% static 'catalog/style/pets.css' %}">
+    <link rel="stylesheet" href="{% static 'style/pet.css' %}">
 {% endblock %}
 {% block page-title %} {{ client.username }} {% endblock %}
 
 {% block content %}
-<p>{{user.first_name}} {{user.last_name}}</p> 
-<p>Почта: {{user.email}}</p> 
+<div class="main-block">
+    <h2>{{user.first_name}} {{user.last_name}}</h2>
+    <div class="row no-gutters main-content">
+      <div class="col-6">
+        <p><b>Почта:</b> {{user.email}}</p> 
+        <p><b>Телефон:</b> {{user.phone}}</p>
+        <p><b>Адрес:</b> {{user.address}}</p>
+      </div>
+      <div class="col-6">
+        {% if shelteredPets %}
+            <p><b>Вы забрали:</b></p>
+            <ul class="list-of-sheltered-pet">
+                {% for pet in shelteredPets %}
+                    <li><a href="{{ pet.pet.get_absolute_url }}">{{ pet.pet.name }}</a> - {{ pet.sheltered_date }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p><b>Вы пока никого не забрали</b></p>    
+        {% endif %}
+      </div>
+      </div>
+    </div>
+  </div>
+
 
 {% endblock %}

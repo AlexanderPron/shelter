@@ -1,16 +1,22 @@
 {% extends 'base.html' %}
 {% block page-style %}
     {% load static %}
-    <link rel="stylesheet" href="{% static 'catalog/style/pets.css' %}">
+    <link rel="stylesheet" href="{% static 'style/pet.css' %}">
 {% endblock %}
 {% block page-title %} Нашли дом {% endblock %}
 
 {% block content %}
-    <h2 class = "head-title">Нашли дом</h2> <br>
-      <ul>
-        {% for shelteredPet in shelteredPets %}
-          <li><a href="{{ shelteredPet.pet.get_absolute_url }}">{{ shelteredPet.pet.name }}</a> - {{ shelteredPet.sheltered_date }} Новый хозяин: <a href="{{ shelteredPet.owner.get_absolute_url }}">{{ shelteredPet.owner.last_name }} {{ shelteredPet.owner.first_name }}</a></li>
-        {% endfor %}
-      </ul>
+  <div class="main-block">
+    <h2>Нашли дом</h2>
+    <div class="row no-gutters main-content">
+      <div class="col-12">
+        <ol class="list-of-sheltered-pet">
+          {% for shelteredPet in shelteredPets %}
+            <li><a href="{{ shelteredPet.pet.get_absolute_url }}">{{ shelteredPet.pet.name }}</a> - {{ shelteredPet.sheltered_date }}</li>
+          {% endfor %}
+        </ol>
+      </div>
+    </div>
+  </div>
 
 {% endblock %}

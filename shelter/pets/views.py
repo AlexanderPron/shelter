@@ -7,6 +7,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.admin.views.decorators import staff_member_required
+from django.shortcuts import get_object_or_404
 
 def getPaginationData(request, dataQuerySet, countItemsOnPage):
 # Функция, которая на вход получает запрос с html-страницы, QuerySet результата запроса в базу данных 
@@ -66,7 +67,7 @@ def sheltered_page(request):
 
 def pet_detail_page(request, pk):
   template = loader.get_template('pet_detail.html')
-  pet = Pet.objects.get(id = pk)
+  pet = get_object_or_404(Pet, pk=pk)
   photos = Photo.objects.filter(pet__id=pk)
   numPhotos = [i for i in range(1, photos.count() + 1)]
   data_list = {
@@ -76,20 +77,15 @@ def pet_detail_page(request, pk):
   }
   return HttpResponse(template.render(data_list, request))
 
-# class ClientDetailView(LoginRequiredMixin, generic.DetailView):
-#     model = Client
-#     template_name = 'client_detail.html'
-#     user =  Client.objects.get(id = pk)
-#     success_url = user.get_absolute_url
-#     # redirect_field_name = 'next'
 @login_required
 def client_detail(request, pk):
   if ((str(request.user.pk) == pk) or request.user.is_staff ):
     template = loader.get_template('client_detail.html')
-    curr_user =  Client.objects.get(id = pk)
-    redirect_field_name = curr_user.get_absolute_url
+    curr_user = get_object_or_404(Client, pk=pk)
+    shelteredPets = ShelteredPets.objects.all().filter(id = pk)
     data_list = {
       "user" : curr_user,
+      "shelteredPets": shelteredPets,
     }
     return HttpResponse(template.render(data_list, request))
   else:

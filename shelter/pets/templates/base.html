@@ -46,8 +46,8 @@
           <a class="nav-main-item" href="{% url 'about' %}">О нас</a>
         </div> 
         <div class="col">
-          {% if user.is_authenticated %}
-            {% if user.is_superuser or user.is_staff %}
+          {% if request.user.is_authenticated %}
+            {% if request.user.is_superuser or user.is_staff %}
               <a class="nav-main-item" href="{% url 'admin:index' %}">Админка</a>
             {% endif%}
           {% endif%}
@@ -57,18 +57,18 @@
         </div> -->
         <div class="col">
           <div class="auth-div">
-            {% if user.is_authenticated %}
-              {% if user.is_superuser or user.is_staff %}
-                {% if user.get_short_name %}
-                  <span><a href="{% url 'manager_panel' %}" class="auth-div-a">{{ user.get_short_name }}</a></span>
+            {% if request.user.is_authenticated %}
+              {% if request.user.is_superuser or user.is_staff %}
+                {% if request.user.get_short_name %}
+                  <span><a href="{% url 'manager_panel' %}" class="auth-div-a">{{ request.user.get_short_name }}</a></span>
                 {% else %}
-                  <span><a href="{% url 'manager_panel' %}" class="auth-div-a">{{ user.username }}</a></span>
+                  <span><a href="{% url 'manager_panel' %}" class="auth-div-a">{{ request.user.username }}</a></span>
                 {% endif%}
               {% else %}
-                {% if user.get_short_name %}
-                  <span><a href="{{ user.get_absolute_url }}" class="auth-div-a">{{ user.get_short_name }}</a></span>
+                {% if request.user.get_short_name %}
+                  <span><a href="{{ user.get_absolute_url }}" class="auth-div-a">{{ request.user.get_short_name }}</a></span>
                 {% else %}
-                  <span><a href="{{ user.get_absolute_url }}" class="auth-div-a">{{ user.username }}</a></span>
+                  <span><a href="{{ user.get_absolute_url }}" class="auth-div-a">{{ request.user.username }}</a></span>
               {% endif%}
             {% endif%}
               <span>|</span>
