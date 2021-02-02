@@ -4,6 +4,9 @@ from django.template import loader
 from .models import Pet, ShelteredPets, Client, Photo
 from django.views import generic
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.admin.views.decorators import staff_member_required
 
 def getPaginationData(request, dataQuerySet, countItemsOnPage):
 # Функция, которая на вход получает запрос с html-страницы, QuerySet результата запроса в базу данных 
@@ -73,7 +76,45 @@ def pet_detail_page(request, pk):
   }
   return HttpResponse(template.render(data_list, request))
 
+# class ClientDetailView(LoginRequiredMixin, generic.DetailView):
+#     model = Client
+#     template_name = 'client_detail.html'
+#     user =  Client.objects.get(id = pk)
+#     success_url = user.get_absolute_url
+#     # redirect_field_name = 'next'
+@login_required
+def client_detail(request, pk):
+  if ((str(request.user.pk) == pk) or request.user.is_staff ):
+    template = loader.get_template('client_detail.html')
+    curr_user =  Client.objects.get(id = pk)
+    redirect_field_name = curr_user.get_absolute_url
+    data_list = {
+      "user" : curr_user,
+    }
+    return HttpResponse(template.render(data_list, request))
+  else:
+    template = loader.get_template('registration/login.html')
+    data_list = {
+    }
+    return HttpResponse(template.render(data_list, request))
 
-class ClientDetailView(generic.DetailView):
-    model = Client
-    template_name = 'client_detail.html'
+def about(request):
+  template = loader.get_template('about.html')
+  data_list = {
+  }
+  return HttpResponse(template.render(data_list, request))
+
+@staff_member_required
+def manager_panel(request):
+  template = loader.get_template('manager_panel.html')
+  all_users = Client.objects.all()
+  all_pets = Pet.objects.all()
+  all_shelteredPets = ShelteredPets.objects.all()
+
+  data_list = {
+    "all_users" : all_users,
+    "all_pets" : all_pets,
+    "all_shelteredPets" : all_shelteredPets,
+
+  }
+  return HttpResponse(template.render(data_list, request))

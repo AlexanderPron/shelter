@@ -11,8 +11,10 @@ urlpatterns = [
   path('dogs/', views.dogs_page, name='dogs'),
   path('parrots/', views.parrots_page, name='parrots'),
   path('sheltered/', views.sheltered_page, name='sheltered'),
+  path('about/', views.about, name='about'),
+  path('manage/', views.manager_panel, name='manager_panel'),
   url(r'^pets/(?P<pk>\d+)$', views.pet_detail_page, name='pet-detail'),
-  url(r'^clients/(?P<pk>\d+)$', views.ClientDetailView.as_view(), name='client-detail'),
+  url(r'^clients/(?P<pk>\d+)$', views.client_detail, name='client-detail'),
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

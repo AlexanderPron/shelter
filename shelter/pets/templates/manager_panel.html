@@ -3,10 +3,9 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'catalog/style/pets.css' %}">
 {% endblock %}
-{% block page-title %} {{ client.username }} {% endblock %}
+{% block page-title %} Панель менеджера {% endblock %}
 
 {% block content %}
-<p>{{user.first_name}} {{user.last_name}}</p> 
-<p>Почта: {{user.email}}</p> 
+<p>Панель менеджера</p> 
 
 {% endblock %}
