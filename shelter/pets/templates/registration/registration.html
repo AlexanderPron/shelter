@@ -9,34 +9,14 @@
 <div class="main-block">
     <div class="row no-gutters main-content">
       <div class="col-12">
-        {{ form.errors }}
-        {% if form.errors %}
-          <p>Не верные логин или пароль</p>
-        {% else %}
-          {% if user.is_authenticated %}
-            <p>У вас нет доступа к этой странице</p>
-          {% else %}
-            <p>Войдите, чтобы продолжить</p>
-          {% endif %}
-        {% endif %}
-
-        <form method="post" action="{% url 'login' %}">
-        {% csrf_token %}
-        <table>
-        <tr>
-          <td><b><p>{{ form.username.label_tag }}</p></b></td>
-          <td>{{ form.username }}</td>
-        </tr>
-
-        <tr>
-          <td><b><p>{{ form.password.label_tag }}</p></b></td>
-          <td>{{ form.password }}</td>
-        </tr>
-        </table>
-
-        <input type="submit" value="login" />
-        <input type="hidden" name="next" value="{{ next }}" />
-        </form>
+        <form action="" method="post">
+          {% csrf_token %}
+          <table>
+            {{ form.as_p }}
+          </table>
+          <input type="submit" value="Submit" />
+      </form>
+ 
       </div>
     </div>
   </div>

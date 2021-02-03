@@ -1,14 +1,18 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
-from .models import Pet, ShelteredPets, Client, Photo
+from .models import Pet, ShelteredPets, Client, Photo, User
 from django.views import generic
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.admin.views.decorators import staff_member_required
-from django.shortcuts import get_object_or_404
-from django.shortcuts import redirect
+from .forms import *
+from django import forms
+from django.forms import ModelForm
+from django.urls import reverse, reverse_lazy
+# from django.contrib.auth  import set_password
+
 
 def getPaginationData(request, dataQuerySet, countItemsOnPage):
 # Функция, которая на вход получает запрос с html-страницы, QuerySet результата запроса в базу данных 
@@ -110,6 +114,26 @@ def manager_panel(request):
     "all_users" : all_users,
     "all_pets" : all_pets,
     "all_shelteredPets" : all_shelteredPets,
-
   }
   return HttpResponse(template.render(data_list, request))
+
+def registration(request):
+  template = loader.get_template('registration/registration.html')
+  if request.method == 'POST':
+    registration_form = RegistrationForm(request.POST)
+    if registration_form.is_valid():
+      username = registration_form.cleaned_data["login"]
+      email = registration_form.cleaned_data["email"]
+      password = registration_form.cleaned_data["password"]
+      new_user = Client.objects.create(username=username, email=email, password=password)
+      new_user.set_password(password)
+      new_user.save()
+      return redirect('index')
+  else:
+    registration_form = RegistrationForm()
+  data_list = {
+    "form" : registration_form,
+  }
+  return HttpResponse(template.render(data_list, request))
+
+  

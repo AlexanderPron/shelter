@@ -5,6 +5,7 @@ from django.conf import settings
 from django.conf.urls import url
 
 
+
 urlpatterns = [
   path('', views.index, name='index'),
   path('cats/', views.cats_page, name='cats'),
@@ -13,6 +14,7 @@ urlpatterns = [
   path('sheltered/', views.sheltered_page, name='sheltered'),
   path('about/', views.about, name='about'),
   path('manage/', views.manager_panel, name='manager_panel'),
+  path('registration/', views.registration, name='registration'),
   url(r'^pets/(?P<pk>\d+)$', views.pet_detail_page, name='pet-detail'),
   url(r'^clients/(?P<pk>\d+)$', views.client_detail, name='client-detail'),
 ]
