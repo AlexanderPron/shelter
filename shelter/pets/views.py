@@ -8,6 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.admin.views.decorators import staff_member_required
 from django.shortcuts import get_object_or_404
+from django.shortcuts import redirect
 
 def getPaginationData(request, dataQuerySet, countItemsOnPage):
 # Функция, которая на вход получает запрос с html-страницы, QuerySet результата запроса в базу данных 
@@ -79,9 +80,10 @@ def pet_detail_page(request, pk):
 
 @login_required
 def client_detail(request, pk):
+  curr_user = get_object_or_404(Client, pk=pk)
   if ((str(request.user.pk) == pk) or request.user.is_staff ):
     template = loader.get_template('client_detail.html')
-    curr_user = get_object_or_404(Client, pk=pk)
+    
     shelteredPets = ShelteredPets.objects.all().filter(id = pk)
     data_list = {
       "user" : curr_user,
@@ -89,10 +91,7 @@ def client_detail(request, pk):
     }
     return HttpResponse(template.render(data_list, request))
   else:
-    template = loader.get_template('registration/login.html')
-    data_list = {
-    }
-    return HttpResponse(template.render(data_list, request))
+    return redirect('login')
 
 def about(request):
   template = loader.get_template('about.html')
