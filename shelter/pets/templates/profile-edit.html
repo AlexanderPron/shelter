@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block page-style %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style/pet.css' %}">
+{% endblock %}
+{% block page-title %} Редактирование профиля {% endblock %}
+
+{% block content %}
+  <div class="main-block">
+    <h2>Редактирование профиля</h2>
+    <form form action="" method="post">
+      {% csrf_token %}
+      {{ profile_edit_form.as_p }}
+      <button action="" type="submit">Сохранить</button>
+    </form>
+  </div>
+
+
+{% endblock %}

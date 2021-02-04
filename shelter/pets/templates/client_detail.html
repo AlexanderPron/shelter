@@ -3,13 +3,22 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'style/pet.css' %}">
 {% endblock %}
-{% block page-title %} {{ client.username }} {% endblock %}
+{% block page-title %} {{ user.username }} {% endblock %}
 
 {% block content %}
-<div class="main-block">
-    <h2>{{user.first_name}} {{user.last_name}}</h2>
+  <div class="main-block">
+    <h2>Личный кабинет</h2>
+    <div class="row no-gutters lk-menu">
+      <div class="col lk-menu-item">
+        <a href="{{ user.get_absolute_url }}">Мои данные</a>
+        <a href="{% url 'client-profile-edit' %}">Редактировать профиль</a>
+      </div>
+    </div>
     <div class="row no-gutters main-content">
       <div class="col-6">
+        <p><b>Имя:</b> {{user.first_name}}</p>
+        <p><b>Фамилия:</b> {{user.last_name}}</p>
+        <p><b>Отчество:</b> {{user.patronymic}}</p>
         <p><b>Почта:</b> {{user.email}}</p> 
         <p><b>Телефон:</b> {{user.phone}}</p>
         <p><b>Адрес:</b> {{user.address}}</p>

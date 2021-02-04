@@ -67,3 +67,10 @@ li > a:hover{
     color:  #7D410D;
 
 }
+.lk-menu{
+    display: flex;
+    justify-content: start;
+}
+.lk-menu-item > a{
+    margin-left: 20px;;
+}

@@ -11,7 +11,7 @@ from .forms import *
 from django import forms
 from django.forms import ModelForm
 from django.urls import reverse, reverse_lazy
-# from django.contrib.auth  import set_password
+from django.contrib.auth import login
 
 
 def getPaginationData(request, dataQuerySet, countItemsOnPage):
@@ -82,6 +82,20 @@ def pet_detail_page(request, pk):
   }
   return HttpResponse(template.render(data_list, request))
 
+# @login_required
+# def client_detail(request, pk):
+#   curr_user = get_object_or_404(Client, pk=pk)
+#   if ((str(request.user.pk) == pk) or request.user.is_staff ):
+#     template = loader.get_template('client_detail.html')
+#     shelteredPets = ShelteredPets.objects.all().filter(id = pk)
+#     data_list = {
+#       "user" : curr_user,
+#       "shelteredPets": shelteredPets,
+#     }
+#     return HttpResponse(template.render(data_list, request))
+#   else:
+#     return redirect('login')
+
 @login_required
 def client_detail(request, pk):
   curr_user = get_object_or_404(Client, pk=pk)
@@ -128,6 +142,7 @@ def registration(request):
       new_user = Client.objects.create(username=username, email=email, password=password)
       new_user.set_password(password)
       new_user.save()
+      login(request, new_user)
       return redirect('index')
   else:
     registration_form = RegistrationForm()
@@ -135,5 +150,25 @@ def registration(request):
     "form" : registration_form,
   }
   return HttpResponse(template.render(data_list, request))
+
+@login_required
+def client_profile_edit(request, pk):
+  curr_user = get_object_or_404(Client, pk=pk)
+  if ((str(request.user.pk) == pk) or request.user.is_staff ):
+    template = loader.get_template('profile-edit.html')
+    if request.method == 'POST':
+      profile_edit_form = ProfileEditForm(request.POST)
+      if profile_edit_form.is_valid():
+        profile_edit_form.save()
+        return redirect('index')
+    else:
+      profile_edit_form = ProfileEditForm()
+      data_list = {
+        "profile_edit_form" :  profile_edit_form,
+      }
+      return HttpResponse(template.render(data_list, request))
+  else:
+    return redirect('login')
+    
 
   
