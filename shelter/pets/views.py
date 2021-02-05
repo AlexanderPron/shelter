@@ -157,12 +157,12 @@ def client_profile_edit(request, pk):
   if ((str(request.user.pk) == pk) or request.user.is_staff ):
     template = loader.get_template('profile-edit.html')
     if request.method == 'POST':
-      profile_edit_form = ProfileEditForm(request.POST)
+      profile_edit_form = ProfileEditForm(request.POST, instance=curr_user)
       if profile_edit_form.is_valid():
         profile_edit_form.save()
-        return redirect('index')
+        return redirect('/clients/%s' % str(curr_user.pk))
     else:
-      profile_edit_form = ProfileEditForm()
+      profile_edit_form = ProfileEditForm(instance=curr_user)
       data_list = {
         "profile_edit_form" :  profile_edit_form,
       }
