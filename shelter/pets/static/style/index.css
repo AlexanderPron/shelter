@@ -1,7 +1,3 @@
-.main-content{
-  display: flex;
-  background-color: #F4F760;
-}
 .left-side-review{
   display: inline-block;
   padding-top: 50px;
@@ -9,11 +5,7 @@
   height: auto;
 }
 .main-side-title{
-  /* display: block; */
   padding-top: 50px;
-  background-color: #F4F760;
-}
-.main-side-content{
   background-color: #F4F760;
 }
 .all-pets-list{
@@ -75,4 +67,6 @@
   height: 100%;
   border-radius: 18px;
 }
-
+.for-bg-color{
+  background-color: #FFCC33;
+}

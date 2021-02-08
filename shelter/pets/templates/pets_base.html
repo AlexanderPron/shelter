@@ -8,12 +8,15 @@
 
 {% block content %}
   <div class="row no-gutters main-side-content">
-    <div class="col main-side-title">
+    <div class="col-2"></div>
+    <div class="col-8 main-side-title">
       <h2 class="all-pet-title">{% block pet-title %} {% endblock %}</h2>
     </div>
+    <div class="col-2"></div>
   </div>
   <div class="row no-gutters main-side-content">
-    <div class="col">
+    <div class="col-2"></div>
+    <div class="col-8">
       {% include 'paginate.html' %}
       <div class="all-pets-list">
         {% for pet in paginationItems %}
@@ -26,6 +29,7 @@
       </div>
       {% include 'paginate.html' %}
     </div>
+    <div class="col-2"></div>
   </div>
 
 {% endblock %}
