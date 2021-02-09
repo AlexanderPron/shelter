@@ -1,11 +1,34 @@
 {% extends 'base.html' %}
 {% block page-style %}
     {% load static %}
-    <link rel="stylesheet" href="{% static 'catalog/style/pets.css' %}">
+    <link rel="stylesheet" href="{% static 'style/index.css' %}">
 {% endblock %}
 {% block page-title %} Панель менеджера {% endblock %}
-
 {% block content %}
-<p>Панель менеджера</p> 
+<div class="row no-gutters main-content-title">
+    <h2 class="all-pet-title">Панель менеджера</h2>
+</div>
+<div class="row no-gutters">
+    <!-- <div class="col for-bg-color"></div> -->
+    <div class="col-2 left-side-menu">
+        <ul>
+            <li>
+                <a href="#">Оформить нового питомца</a>
+            </li>
+            <li>
+                <a href="#">Добавить клиента</a>
+            </li>
+            <li>
+                <a href="#">Отдать питомца</a>
+            </li>
+            <li>
+                <a href="#">Редактировать профиль питомца</a>
+            </li>
+        </ul>
+    </div>
+    <div class="col-10 main-side-title">
+    </div>
+    <div class="col main-side-title"></div>
+</div>
 
 {% endblock %}

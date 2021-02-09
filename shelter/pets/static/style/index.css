@@ -1,4 +1,4 @@
-.left-side-review{
+.left-side-review, .left-side-menu {
   display: inline-block;
   padding-top: 50px;
   background-color: #FFCC33;
@@ -69,4 +69,7 @@
 }
 .for-bg-color{
   background-color: #FFCC33;
+}
+.main-content-title{
+  height: min-content;
 }
