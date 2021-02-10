@@ -6,24 +6,13 @@
 {% block page-title %} Котопёс {% endblock %}
 
 {% block content %}
-<div class="row no-gutters main-content-title">
+<div class="row no-gutters main-content">
   <div class="col for-bg-color"></div>
   <div class="col-2 left-side-review">
     <p class="review-title"> Отзывы о нас: </p>
   </div>
-  <div class="col-8 main-side-title">
-    <p class="all-pet-title"> Наши питомцы: </p>
-  </div>
-  <div class="col-2 right-side">
-    <p class="newbie-pet-title"> Наши новички: </p>
-  </div>
-  <div class="col for-bg-color"></div>
-</div>
-<div class="row no-gutters main-content">
-  <div class="col for-bg-color"></div>
-  <div class="col-2 left-side-review">
-  </div>
   <div class="col-8 main-side-content">
+    <p class="all-pet-title"> Наши питомцы: </p>
     {% include 'paginate.html' %}
     <div class="all-pets-list">
       {% for pet in paginationItems %}
@@ -37,6 +26,7 @@
     {% include 'paginate.html' %}
   </div>
   <div class="col-2 right-side">
+    <p class="newbie-pet-title"> Наши новички: </p>
     {% for pet in lastPets %}
         <div class="newbie-pet-card">
           <a href="{{ pet.get_absolute_url }}"><img src="{{ pet.avatar_url }}" alt="{{ pet.name }}" class="newbie-pet-card-img">

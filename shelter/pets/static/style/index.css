@@ -8,10 +8,12 @@
   padding-top: 50px;
   background-color: #F4F760;
 }
+.main-side-content{
+  padding-top: 50px;
+}
 .all-pets-list{
   display: flex;
   flex-wrap: wrap;
-  margin-top: 26px;
 }
 
 .all-pet-card{
@@ -36,11 +38,19 @@
   background-color: #FFCC33;
   height: auto;
 }
-.review-title, .newbie-pet-title, .all-pet-title{
+.review-title, .all-pet-title{
   color:#7D410D;
   font-size: 1.2em;
   font-weight: bold;
   text-align: center;
+}
+.newbie-pet-title{
+  color:#7D410D;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 70px;
+
 }
 .newbie-pet-card{
   position: relative;
@@ -72,4 +82,17 @@
 }
 .main-content-title{
   height: min-content;
+}
+.manager-menu-list{
+  list-style-type: none;
+  margin-top: 20px;
+}
+.manager-menu-hr{
+  color: #7D410D;
+  text-align: center;
+  width: 80%;
+  height: 2px;
+}
+.active-elem{
+  font-weight: bolder;
 }

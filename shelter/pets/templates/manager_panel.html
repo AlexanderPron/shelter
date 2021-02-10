@@ -5,30 +5,33 @@
 {% endblock %}
 {% block page-title %} Панель менеджера {% endblock %}
 {% block content %}
-<div class="row no-gutters main-content-title">
-    <h2 class="all-pet-title">Панель менеджера</h2>
-</div>
-<div class="row no-gutters">
-    <!-- <div class="col for-bg-color"></div> -->
     <div class="col-2 left-side-menu">
-        <ul>
-            <li>
-                <a href="#">Оформить нового питомца</a>
+        <h2 class="all-pet-title">Панель менеджера</h2>
+        <ul class="manager-menu-list">
+            <li class="manager-menu-item">
+                <a class="link active-elem" href="#">Все питомцы</a>
+                <hr class="manager-menu-hr">
             </li>
-            <li>
-                <a href="#">Добавить клиента</a>
+            <li class="manager-menu-item">
+                <a class="link" href="#">Оформить нового питомца</a>
+                <hr class="manager-menu-hr">
             </li>
-            <li>
-                <a href="#">Отдать питомца</a>
+            <li class="manager-menu-item">
+                <a class="link" href="#">Добавить клиента</a>
+                <hr class="manager-menu-hr">
             </li>
-            <li>
-                <a href="#">Редактировать профиль питомца</a>
+            <li class="manager-menu-item">
+                <a class="link" href="#">Отдать питомца</a>
+                <hr class="manager-menu-hr">
+            </li>
+            <li class="manager-menu-item">
+                <a class="link" href="#">Редактировать профиль питомца</a>
             </li>
         </ul>
     </div>
     <div class="col-10 main-side-title">
+        {% block manager-page %}{% endblock %}
     </div>
-    <div class="col main-side-title"></div>
-</div>
+
 
 {% endblock %}

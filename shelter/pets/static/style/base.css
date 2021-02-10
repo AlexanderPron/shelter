@@ -147,8 +147,20 @@ body{
 .auth-div > a:hover{
   color: #FFCC33;
 }
+
+.link{
+  font-size: 16px;
+  color: #7D410D;
+  padding-bottom: 0;
+  padding-top: 10px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.link:hover{
+  color: #7D410D;
+  font-weight: bolder;
+}
 .footer{
-  /* height: 50px; */
   background-color: #7D410D;
 }
 
