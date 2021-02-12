@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
-from .models import Pet, ShelteredPets, Client, Photo, User
+from .models import *
 from django.views import generic
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
@@ -12,6 +12,7 @@ from django import forms
 from django.forms import ModelForm
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth import login
+from django.views.generic import ListView 
 
 
 def getPaginationData(request, dataQuerySet, countItemsOnPage):
@@ -169,6 +170,19 @@ def client_profile_edit(request, pk):
       return HttpResponse(template.render(data_list, request))
   else:
     return redirect('login')
+
+class ManageMain(ListView):
+  model = Pet
+  template_name = 'manager_panel_show_pets.html'
+  context_object_name = 'pets'
+  def get_context_data(self, *, object_list = None, **kwargs):
+    context = super().get_context_data(**kwargs)
+    context['field_names'] = Pet._meta.get_fields(include_parents=False)
+    return context
+  def get_queryset(self):
+    return Pet.objects.filter(available = True)
+
+
     
 
   

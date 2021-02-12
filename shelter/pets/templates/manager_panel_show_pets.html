@@ -1,0 +1,19 @@
+{% extends 'manager_panel_base.html' %}
+{% block manager-page %}
+<table class="table table-striped">
+  <thead>
+    <tr>
+      {% for field in field_names %}
+        <th scope="col">{{ field.verbose_name }}</th>
+      {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for pet in pets %}
+      {% for field in field_names %}
+        <tr><th>{{ pet.field.name }}</th></tr>
+      {% endfor %}
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
