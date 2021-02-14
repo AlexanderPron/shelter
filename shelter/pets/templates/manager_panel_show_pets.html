@@ -1,18 +1,31 @@
 {% extends 'manager_panel_base.html' %}
 {% block manager-page %}
+{% load pet_filters %}
 <table class="table table-striped">
   <thead>
     <tr>
+      <th scope="col">№ п/п</th>
       {% for field in field_names %}
-        <th scope="col">{{ field.verbose_name }}</th>
+        {% if field.name in need_fields %}
+          <th scope="col">{{ field.verbose_name }}</th>
+        {% endif %}
       {% endfor %}
     </tr>
   </thead>
   <tbody>
     {% for pet in pets %}
+    <tr>
+      <td>{{ forloop.counter }}</td>
       {% for field in field_names %}
-        <tr><th>{{ pet.field.name }}</th></tr>
+        {% if field.name in need_fields %}
+          {% if field.name == 'avatar' %}
+            <td><a href="{{ pet.get_absolute_url }}"><img src="{{ pet.avatar_url }}" alt="{{ pet.name }}" height="60px"></td>
+          {% else %}
+            <td>{{ pet|get_attr:field.name }}</td>
+          {% endif %}
+        {% endif %}
       {% endfor %}
+    </tr>
     {% endfor %}
   </tbody>
 </table>

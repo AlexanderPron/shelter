@@ -13,7 +13,9 @@ from django.forms import ModelForm
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth import login
 from django.views.generic import ListView 
-
+from django import template
+from django.views.generic import TemplateView
+from braces import views
 
 def getPaginationData(request, dataQuerySet, countItemsOnPage):
 # Функция, которая на вход получает запрос с html-страницы, QuerySet результата запроса в базу данных 
@@ -83,20 +85,6 @@ def pet_detail_page(request, pk):
   }
   return HttpResponse(template.render(data_list, request))
 
-# @login_required
-# def client_detail(request, pk):
-#   curr_user = get_object_or_404(Client, pk=pk)
-#   if ((str(request.user.pk) == pk) or request.user.is_staff ):
-#     template = loader.get_template('client_detail.html')
-#     shelteredPets = ShelteredPets.objects.all().filter(id = pk)
-#     data_list = {
-#       "user" : curr_user,
-#       "shelteredPets": shelteredPets,
-#     }
-#     return HttpResponse(template.render(data_list, request))
-#   else:
-#     return redirect('login')
-
 @login_required
 def client_detail(request, pk):
   curr_user = get_object_or_404(Client, pk=pk)
@@ -115,20 +103,6 @@ def client_detail(request, pk):
 def about(request):
   template = loader.get_template('about.html')
   data_list = {
-  }
-  return HttpResponse(template.render(data_list, request))
-
-@staff_member_required
-def manager_panel(request):
-  template = loader.get_template('manager_panel.html')
-  all_users = Client.objects.all()
-  all_pets = Pet.objects.all()
-  all_shelteredPets = ShelteredPets.objects.all()
-
-  data_list = {
-    "all_users" : all_users,
-    "all_pets" : all_pets,
-    "all_shelteredPets" : all_shelteredPets,
   }
   return HttpResponse(template.render(data_list, request))
 
@@ -171,16 +145,18 @@ def client_profile_edit(request, pk):
   else:
     return redirect('login')
 
-class ManageMain(ListView):
+class ManageMain(views.LoginRequiredMixin, views.StaffuserRequiredMixin, ListView):
   model = Pet
   template_name = 'manager_panel_show_pets.html'
   context_object_name = 'pets'
   def get_context_data(self, *, object_list = None, **kwargs):
     context = super().get_context_data(**kwargs)
-    context['field_names'] = Pet._meta.get_fields(include_parents=False)
+    context['field_names'] = Pet._meta.get_fields()
+    context['need_fields'] = ['id', 'name', 'pet_type', 'breed', 'sex', 'enter_date', 'approximate_age', 'description', 'avatar']
     return context
   def get_queryset(self):
     return Pet.objects.filter(available = True)
+
 
 
     
