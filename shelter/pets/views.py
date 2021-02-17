@@ -147,6 +147,7 @@ def client_profile_edit(request, pk):
 
 class ManageMain(views.LoginRequiredMixin, views.StaffuserRequiredMixin, ListView):
   model = Pet
+  # paginate_by = 10
   template_name = 'manager_panel_show_pets.html'
   context_object_name = 'pets'
   def get_context_data(self, *, object_list = None, **kwargs):

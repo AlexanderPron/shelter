@@ -1,6 +1,7 @@
 {% extends 'manager_panel_base.html' %}
 {% block manager-page %}
 {% load pet_filters %}
+{% include 'paginate.html' %}
 <table class="table table-striped">
   <thead>
     <tr>
@@ -29,4 +30,5 @@
     {% endfor %}
   </tbody>
 </table>
+{% include 'paginate.html' %}
 {% endblock %}
