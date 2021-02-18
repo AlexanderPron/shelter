@@ -12,7 +12,7 @@ from django import forms
 from django.forms import ModelForm
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth import login
-from django.views.generic import ListView 
+from django.views.generic import ListView, CreateView
 from django import template
 from django.views.generic import TemplateView
 from braces import views
@@ -157,6 +157,12 @@ class ManageMain(views.LoginRequiredMixin, views.StaffuserRequiredMixin, ListVie
     return context
   def get_queryset(self):
     return Pet.objects.filter(available = True)
+
+class ManageAddPet(views.LoginRequiredMixin, views.StaffuserRequiredMixin, CreateView):
+  model = Pet
+  template_name = 'manager_panel_add_pet.html'
+  template_name_suffix = 'manager_panel_add_pet.html'
+  fields = '__all__'
 
 
 
