@@ -37,6 +37,9 @@
     margin: 0 auto;
     padding: 0;
 }
+.carousel-item{
+    height: -webkit-fill-available;
+}
 .carousel-indicators{
     bottom: -10px;
 }
