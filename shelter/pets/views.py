@@ -163,6 +163,7 @@ class ManageAddPet(views.LoginRequiredMixin, views.StaffuserRequiredMixin, Creat
   template_name = 'manager_panel_add_pet.html'
   template_name_suffix = 'manager_panel_add_pet.html'
   fields = '__all__'
+  success_url = reverse_lazy('manager_panel')
 
 
 
