@@ -1,15 +1,15 @@
+function shineLinks(id){
+    try{
+        var el=document.getElementById(id).getElementsByTagName('a');
+        var url=document.location.href;
+        for(var i=0;i<el.length; i++){
+            if (url==el[i].href){
+                el[i].className += ' active-elem';
+            };
+        };
+    }catch(e){}
+};
+
 $(document).ready(function () {
-    const links = document.querySelectorAll(".link");
-    // let currActiveLink = document.querySelector(".active-elem");
-    links.forEach(link => addEventListener('click', function (e) {
-        if ((link == e.target) && (link.classList.contains("active-elem") == false)){
-            link.classList.add("active-elem");
-            // currActiveLink = link
-        }
-        else if ((link == e.target) && (link.classList.contains("active-elem") == true)){
-        }
-        else{
-            link.classList.remove("active-elem");
-        }
-    }));
+    shineLinks("manager-menu")
 });

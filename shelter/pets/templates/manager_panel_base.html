@@ -5,7 +5,7 @@
 {% endblock %}
 {% block page-title %} Панель менеджера {% endblock %}
 {% block content %}
-    <div class="col-2 left-side-menu">
+    <div class="col-2 left-side-menu" id = "manager-menu">
         <h2 class="all-pet-title">Панель менеджера</h2>
         <ul class="manager-menu-list">
             <li class="manager-menu-item">
@@ -17,15 +17,12 @@
                 <hr class="manager-menu-hr">
             </li>
             <li class="manager-menu-item">
-                <a class="link" href="#">Добавить клиента</a>
+                <a class="link" href="{% url 'manager_panel_clients' %}">Клиенты</a>
                 <hr class="manager-menu-hr">
             </li>
             <li class="manager-menu-item">
-                <a class="link" href="#">Отдать питомца</a>
+                <a class="link" href="{% url 'manager_panel_shelter_pet' %}">Отдать питомца</a>
                 <hr class="manager-menu-hr">
-            </li>
-            <li class="manager-menu-item">
-                <a class="link" href="#">Редактировать профиль питомца</a>
             </li>
         </ul>
     </div>

@@ -158,10 +158,40 @@ class ManageMain(views.LoginRequiredMixin, views.StaffuserRequiredMixin, ListVie
   def get_queryset(self):
     return Pet.objects.filter(available = True)
 
+class ManageClientList(views.LoginRequiredMixin, views.StaffuserRequiredMixin, ListView):
+  model = Client
+  # paginate_by = 10
+  template_name = 'manager_panel_show_clients.html'
+  context_object_name = 'clients'
+  def get_context_data(self, *, object_list = None, **kwargs):
+    context = super().get_context_data(**kwargs)
+    context['field_names'] = Client._meta.get_fields()
+    context['need_fields'] = ['id', 'first_name', 'last_name', 'patronymic', 'phone', 'email', 'address']
+    return context
+  def get_queryset(self):
+    return Client.objects.all()
+
 class ManageAddPet(views.LoginRequiredMixin, views.StaffuserRequiredMixin, CreateView):
   model = Pet
   template_name = 'manager_panel_add_pet.html'
   template_name_suffix = 'manager_panel_add_pet.html'
+  fields = '__all__'
+  success_url = reverse_lazy('manager_panel')
+
+
+
+class ManageAddClent(views.LoginRequiredMixin, views.StaffuserRequiredMixin, CreateView):
+  model = Client
+  template_name = 'manager_panel_add_client.html'
+  template_name_suffix = 'manager_panel_add_client.html'
+  fields = '__all__'
+  success_url = reverse_lazy('manager_panel_clients')
+
+
+class ManageShelterPet(views.LoginRequiredMixin, views.StaffuserRequiredMixin, CreateView):
+  model = ShelteredPets
+  template_name = 'manager_panel_shelter_pet.htm'
+  template_name_suffix = 'manager_panel_shelter_pet.htm'
   fields = '__all__'
   success_url = reverse_lazy('manager_panel')
 
