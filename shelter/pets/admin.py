@@ -15,3 +15,7 @@ class PhotoAdmin(admin.ModelAdmin):
 @admin.register(ShelteredPets)
 class ShelteredPetsAdmin(admin.ModelAdmin):
   pass
+#   def formfield_for_foreignkey(self, db_field, request, **kwargs):
+#     if db_field.name == "name":
+#         kwargs["queryset"] = Pet.objects.filter(available=True)
+#     return super(ShelteredPetsAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)

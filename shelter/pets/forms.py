@@ -11,3 +11,17 @@ class ProfileEditForm(forms.ModelForm):
     class Meta:
         model = Client
         fields = ('first_name','last_name', 'patronymic', 'phone', 'email', 'address',)
+
+class AddUserForm(forms.ModelForm):
+    class Meta:
+        model = Client
+        fields = ('username', 'password', 'first_name','last_name', 'patronymic', 'phone', 'email', 'address',)
+        widgets = {
+            'password': forms.PasswordInput()
+        }
+    def save( self, commit = True ) :
+        user = super( AddUserForm, self ).save( commit = False )
+        user.set_password( self.cleaned_data[ "password" ] )
+        if commit:
+            user.save()
+        return user

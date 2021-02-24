@@ -12,7 +12,7 @@ from django import forms
 from django.forms import ModelForm
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth import login
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, UpdateView
 from django import template
 from django.views.generic import TemplateView
 from braces import views
@@ -135,7 +135,10 @@ def client_profile_edit(request, pk):
       profile_edit_form = ProfileEditForm(request.POST, instance=curr_user)
       if profile_edit_form.is_valid():
         profile_edit_form.save()
-        return redirect('/clients/%s' % str(curr_user.pk))
+        if request.user.is_staff:
+          return redirect(reverse_lazy('manager_panel_clients'))
+        else:
+          return redirect('/clients/%s' % str(curr_user.pk))
     else:
       profile_edit_form = ProfileEditForm(instance=curr_user)
       data_list = {
@@ -169,7 +172,7 @@ class ManageClientList(views.LoginRequiredMixin, views.StaffuserRequiredMixin, L
     context['need_fields'] = ['id', 'first_name', 'last_name', 'patronymic', 'phone', 'email', 'address']
     return context
   def get_queryset(self):
-    return Client.objects.all()
+    return Client.objects.all().filter(is_staff=False)
 
 class ManageAddPet(views.LoginRequiredMixin, views.StaffuserRequiredMixin, CreateView):
   model = Pet
@@ -178,22 +181,27 @@ class ManageAddPet(views.LoginRequiredMixin, views.StaffuserRequiredMixin, Creat
   fields = '__all__'
   success_url = reverse_lazy('manager_panel')
 
-
-
 class ManageAddClent(views.LoginRequiredMixin, views.StaffuserRequiredMixin, CreateView):
   model = Client
+  form_class = AddUserForm
   template_name = 'manager_panel_add_client.html'
   template_name_suffix = 'manager_panel_add_client.html'
-  fields = '__all__'
   success_url = reverse_lazy('manager_panel_clients')
-
 
 class ManageShelterPet(views.LoginRequiredMixin, views.StaffuserRequiredMixin, CreateView):
   model = ShelteredPets
-  template_name = 'manager_panel_shelter_pet.htm'
-  template_name_suffix = 'manager_panel_shelter_pet.htm'
+  template_name = 'manager_panel_shelter_pet.html'
+  template_name_suffix = 'manager_panel_shelter_pet.html'
   fields = '__all__'
   success_url = reverse_lazy('manager_panel')
+
+class ManagePetEdit(views.LoginRequiredMixin, views.StaffuserRequiredMixin, UpdateView):
+  model = Pet
+  template_name = 'manager_panel_pet_edit.html'
+  template_name_suffix = 'manager_panel_pet_edit.html'
+  fields = '__all__'
+  success_url = reverse_lazy('manager_panel')
+
 
 
 
