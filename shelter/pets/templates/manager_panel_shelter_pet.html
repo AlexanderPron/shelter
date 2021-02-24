@@ -5,7 +5,20 @@
 <form action="" method="post">
     {% csrf_token %}
     <table>
-    {{ form.as_table }}
+    <!-- {{ form.as_table }} -->
+
+    <select class="filter" name="filter">
+        {% for availablePet in availablePets %}
+            <option value="{{availablePet}}">{{availablePet}}</option>
+        {% endfor %}
+    </select>
+    </br>
+    <select class="filter" name="filter">
+        {% for nonStaffClient in nonStaffClients %}
+            <option value="{{nonStaffClient}}">{{nonStaffClient}}</option>
+        {% endfor %}
+    </select>
+
     </table>
     <input type="submit" value="Устроить питомца" />
 
