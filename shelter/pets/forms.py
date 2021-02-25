@@ -1,6 +1,10 @@
 from django import forms
 from django.core import validators
-from .models import Client
+from .models import Client, ShelteredPets, Pet, Client
+from datetime import date
+import datetime
+from django.contrib.admin.widgets import AdminDateWidget
+from django.forms.fields import DateField
 
 class RegistrationForm(forms.Form):
     login = forms.CharField(validators=[validators.validate_slug], label='Логин', max_length=100)
@@ -25,3 +29,13 @@ class AddUserForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+
+class AddShelterPetForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(AddShelterPetForm, self).__init__(*args, **kwargs)
+        self.fields['pet'] = forms.ModelChoiceField(queryset=Pet.objects.filter(available=True), label='Питомец')
+        self.fields['owner'] = forms.ModelChoiceField(queryset=Client.objects.filter(is_staff=False), label='Хозяин')
+        self.fields['sheltered_date'] = forms.DateField(widget = forms.SelectDateWidget(), initial=datetime.date.today, label='Дата')
+    class Meta:
+        model = ShelteredPets
+        fields = ('pet','owner','sheltered_date')

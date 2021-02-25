@@ -190,17 +190,18 @@ class ManageAddClent(views.LoginRequiredMixin, views.StaffuserRequiredMixin, Cre
 
 class ManageShelterPet(views.LoginRequiredMixin, views.StaffuserRequiredMixin, CreateView):
   model = ShelteredPets
+  form_class = AddShelterPetForm
   template_name = 'manager_panel_shelter_pet.html'
   template_name_suffix = 'manager_panel_shelter_pet.html'
-  fields = '__all__'
+  # fields = '__all__'
   success_url = reverse_lazy('manager_panel')
-  context_object_name = 'shelterdata'
+  # context_object_name = 'shelterdata'
   
-  def get_context_data(self, *, object_list = None, **kwargs):
-    context = super().get_context_data(**kwargs)
-    context['nonStaffClients'] = Client.objects.filter(is_staff=False)
-    context['availablePets'] = Pet.objects.filter(available=True)
-    return context
+  # def get_context_data(self, *, object_list = None, **kwargs):
+  #   context = super().get_context_data(**kwargs)
+  #   context['nonStaffClients'] = Client.objects.filter(is_staff=False)
+  #   context['availablePets'] = Pet.objects.filter(available=True)
+  #   return context
 
 
 class ManagePetEdit(views.LoginRequiredMixin, views.StaffuserRequiredMixin, UpdateView):
