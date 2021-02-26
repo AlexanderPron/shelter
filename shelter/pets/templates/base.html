@@ -10,7 +10,6 @@
 
 </head>
 <body>
-  <!-- <div class="container"> -->
     <div class="row no-gutters shelter-pic">
       <div class="col"></div>
       <div class="col-1"></div>
@@ -88,20 +87,28 @@
     </div>
     <div class="row no-gutters footer">
       <div class="col"></div>
-      <div class="col-2">9
-
+      <div class="col-2">
+        <p>© Котопес 2020 - <span id="year"></span>г.</p>
+        <p>Все права защищены и охраняются.</p>
+        <p>Designed by ©AlexandrPr</p>
       </div>
-      <div class="col-6">10
-
+      <div class="col-6">
+        <a href="#"><img src="{% static 'img\site_imgs\social-fb.svg' %}" alt="" height="30px">
       </div>
-      <div class="col-2">11
-
+      <div class="col-2">
       </div>
       <div class="col"></div>
     </div>
-  <!-- </div> -->
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <script>
+      $(document).ready(function () {
+        const tdate = new Date();
+        const yyyy = tdate.getFullYear();
+        document.getElementById("year").innerText = yyyy;
+      });
+    </script>
     {% block page-script %} {% endblock %}
 </body>
 </html>
