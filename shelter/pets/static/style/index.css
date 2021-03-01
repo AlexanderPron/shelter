@@ -18,7 +18,7 @@
 .all-pet-card{
   position: relative;
   width: 30%;
-  height: 300px;
+  /* height: 300px; */
   margin: 0;
   border-radius: 20px;
   border: 2px solid #7D410D;
@@ -34,6 +34,7 @@
 .right-side{
   display: inline-block;
   padding-top: 50px;
+  padding-right: 40px;
   background-color: #FFCC33;
   height: auto;
 }
@@ -56,7 +57,7 @@
   width: 95%;
   border-radius: 20px;
   border: 2px solid #7D410D;
-  margin: 0 auto 10px auto;
+  margin: 0 20px 10px 20px;
 }
 .newbie-pet-name, .all-pet-name{
   position: absolute;
@@ -66,7 +67,7 @@
   right: 0; 
   transform: translateY(-50%);
   margin: 0;
-  font-size: 2em;
+  font-size: 2vw;
   color: #fff;
   text-shadow: 1px 1px 1px #000;
 }

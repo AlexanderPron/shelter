@@ -1,6 +1,6 @@
 from django import forms
 from django.core import validators
-from .models import Client, ShelteredPets, Pet, Client
+from .models import Client, ShelteredPets, Pet, Client, Photo
 from datetime import date
 import datetime
 from django.contrib.admin.widgets import AdminDateWidget
@@ -39,3 +39,15 @@ class AddShelterPetForm(forms.ModelForm):
     class Meta:
         model = ShelteredPets
         fields = ('pet','owner','sheltered_date')
+
+class PetProfileEditForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(PetProfileEditForm, self).__init__(*args, **kwargs)
+    class Meta:
+        model = Pet
+        fields = '__all__'
+
+class PetPhotoForm(forms.ModelForm):
+    class Meta:
+        model = Photo
+        fields = '__all__'

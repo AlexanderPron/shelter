@@ -10,8 +10,10 @@
     <h2>Редактирование профиля</h2>
     <form form action="" method="post">
       {% csrf_token %}
-      {{ profile_edit_form.as_p }}
-      <button action="" type="submit">Сохранить</button>
+      <table>
+        {{ profile_edit_form.as_table }}
+      </table>
+      <button class="btn btn-primary" action="" type="submit">Сохранить</button>
     </form>
   </div>
 

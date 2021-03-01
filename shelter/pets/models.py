@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.contrib.auth.models import AbstractUser
+from django.core import validators
 
 def path_for_pet_avatar(pet, name):
   return '{}_{}/{}'.format(pet.name, pet.id, name)
@@ -13,7 +14,7 @@ def path_for_pet_img(obj, name):
   return '{}_{}/{}'.format(obj.pet.name, obj.pet.id, name)
 
 class Pet(models.Model):
-  name = models.CharField(max_length=100, default='Пока без имени', help_text='Укажите кличку животного', verbose_name='Кличка')
+  name = models.CharField(max_length=100, default='no name', verbose_name='Кличка')
   PET_TYPE_CHOICES = (
     ('Cat', 'Кошка'),
     ('Dog', 'Собака'),
@@ -21,7 +22,7 @@ class Pet(models.Model):
   )
   pet_type = models.CharField(max_length=10, choices=PET_TYPE_CHOICES, default='Cat', verbose_name='Вид') 
 
-  breed = models.CharField(max_length=100, default='Неизвестно', help_text='Укажите породу животного', verbose_name='Порода')
+  breed = models.CharField(max_length=100, default='unknown', verbose_name='Порода')
   SEX_CHOICES = [
     ('M', 'Мужской'),
     ('F', 'Женский'),
@@ -79,10 +80,11 @@ class Photo(models.Model):
 
 
 class Client(AbstractUser):
-  first_name = models.CharField(max_length=100, default='нет имени' , verbose_name='Имя')
-  last_name = models.CharField(max_length=100, default='нет фамилии', verbose_name='Фамилия')
+  username = models.CharField(unique=True, validators=[validators.validate_slug], max_length=100, verbose_name='Логин')
+  first_name = models.CharField(max_length=100, default='None' , verbose_name='Имя')
+  last_name = models.CharField(max_length=100, default='None', verbose_name='Фамилия')
   patronymic = models.CharField(max_length=100, blank=True, null=True, verbose_name='Отчество')
-  phone = models.BigIntegerField(blank=True, null=True, help_text='ТОЛЬКО цифры', verbose_name='Телефон')
+  phone = models.BigIntegerField(blank=True, null=True, verbose_name='Телефон')
   email = models.EmailField(max_length=254, blank=True, null=True, verbose_name='Почта')
   address = models.TextField(blank=True, null=True, verbose_name='Адрес')
 

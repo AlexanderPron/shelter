@@ -12,10 +12,11 @@ from django import forms
 from django.forms import ModelForm
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth import login
-from django.views.generic import ListView, CreateView, UpdateView
+from django.views.generic import ListView, CreateView, UpdateView, View
 from django import template
 from django.views.generic import TemplateView
 from braces import views
+from django.http import Http404
 
 def getPaginationData(request, dataQuerySet, countItemsOnPage):
 # Функция, которая на вход получает запрос с html-страницы, QuerySet результата запроса в базу данных 
@@ -195,12 +196,53 @@ class ManageShelterPet(views.LoginRequiredMixin, views.StaffuserRequiredMixin, C
   template_name_suffix = 'manager_panel_shelter_pet.html'
   success_url = reverse_lazy('manager_panel')
 
+# class ManagePetEdit(views.LoginRequiredMixin, views.StaffuserRequiredMixin, UpdateView):
+#   model = Pet
+#   template_name = 'manager_panel_pet_edit.html'
+#   template_name_suffix = 'manager_panel_pet_edit.html'
+#   fields = '__all__'
+#   success_url = reverse_lazy('manager_panel')
+
+
 class ManagePetEdit(views.LoginRequiredMixin, views.StaffuserRequiredMixin, UpdateView):
-  model = Pet
   template_name = 'manager_panel_pet_edit.html'
   template_name_suffix = 'manager_panel_pet_edit.html'
-  fields = '__all__'
-  success_url = reverse_lazy('manager_panel')
+
+  def get_object(self):
+    try:
+        obj = Pet.objects.get(pk=self.kwargs['pk'])
+    except Pet.DoesNotExist:
+        raise Http404('Pet not found!')
+    return obj
+
+  def get_context_data(self, **kwargs):
+    kwargs['pet'] = self.get_object()
+    if 'pet_form' not in kwargs:
+        kwargs['pet_form'] = PetProfileEditForm()
+    if 'photo_form' not in kwargs:
+        kwargs['photo_form'] = PetPhotoForm()
+    return kwargs
+
+  def get(self, request, *args, **kwargs):
+    return render(request, self.template_name, self.get_context_data())
+
+  def post(self, request, *args, **kwargs):
+    ctxt = {}
+    self.object = self.get_object()
+    if 'pet-btn' in request.POST:
+      pet_form = PetProfileEditForm(request.POST, instance=self.get_object())
+      if pet_form.is_valid():
+        pet_form.save()
+      else:
+        ctxt['pet_form'] = pet_form
+    elif 'photo-btn' in request.POST:
+      photo_form = PetPhotoForm(request.POST)
+      if photo_form.is_valid():
+        photo_form.save()
+      else:
+        ctxt['photo_form'] = photo_form
+    return render(request, self.template_name, self.get_context_data(**ctxt))
+
 
 
 

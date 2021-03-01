@@ -8,11 +8,49 @@ body{
   background-color: #F4F760;
   min-height: 100%;
   display: grid;
-  grid-template-rows: 150px 60px auto 50px;
+  grid-template-rows: 150px 60px auto max-content;
   padding-bottom: 0;
 }
 p {
   margin: 0;
+  color: #7D410D;
+}
+
+input, select, textarea{
+  border-radius: 5px;
+  border: 2px solid #7D410D;
+  outline: none;
+  width: 300px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+textarea{
+  min-height: 50px;
+  height: 200px;
+  min-width: 300px;
+  width: 500px;
+}
+table{
+  color: #7D410D;
+}
+
+#id_available, #avatar-clear_id{
+  width: auto;
+}
+#file-upload-button{
+  display: none;
+}
+#id_sheltered_date_day{
+  width: 50px;
+}
+#id_sheltered_date_month{
+  width: 140px;
+}
+#id_sheltered_date_year{
+  width: 90px;
+}
+.helptext{
+  display: none;
 }
 .no-gutters {
   margin-right: 0;
@@ -62,11 +100,11 @@ p {
 .nav-main-item, .dropbtn {
   color: #F4F760;
   font-size: 20px;  
+  font-weight: 600;
   padding: 6px 2px;
   background-color: inherit;
   font-family: inherit;
   margin: 0;
-  font-weight: normal;
   border: none;
   outline: none;
   border-radius: 15%;
@@ -131,11 +169,11 @@ p {
   color:  #F4F760;
   padding-right: 20px;
 }
-.auth-div > span, .auth-div > span > a{
+.auth-div > span{
   font-size: 16px;
   margin-right: 10px;
   margin-left: 10px;
-  padding-top: 6px;
+  padding-top: 10px;
 }
 .auth-div > a{
   font-size: 16px;
@@ -163,12 +201,76 @@ p {
 .footer{
   background-color: #7D410D;
   color: #F4F760;
-  font-size: 10px;
+  font-size: 14px;
   height: 100%;
+  padding: 10px;
 }
 
 .main-content{
   height: auto;
   background-color: #F4F760;
+}
+.footer-content{
+  display: flex;
+  position: relative;
+}
+.footer-disclaimer{
+  padding-left: 100px;
+}
+.footer-social-icons{
+  position: absolute;
+  right: 50%;
+  top: 15%;
+  transform: translateX(50%);
+}
+.footer-social-icons-link{
+  margin-right: 10px;
+}
+svg:hover .ch-color-on-hover{
+  fill: #FFCC33;
+}
+.author-link{
+  color:  #F4F760;
+}
+.author-link:hover{
+  color: #FFCC33;
+}
+/* ===== Стили пагинации ====== */
+ul{
+  margin-top: 17px;
+}
+.page-link{
+  color: #7D410D;
+  background-color: #F4F760;
+  border-color: rgba(125, 65, 13, .5);
+}
+.page-link:hover{
+  color: #7D410D;
+  background-color: rgba(125, 65, 13, .5);
+  border-color: #7D410D;
+}
+.page-item.active .page-link {
+  color: #FFCC33;
+  background-color: #7D410D;
+  border-color: #7D410D;
+  opacity: 1;
+}
+/* ============================ */
+
+.btn-primary {
+  color: #F4F760;
+  background-color: #7D410D;
+  border-color: #7D410D;
+  margin-left: 0;
+  width:auto;
+  padding: 6px 10px;
+}
+.btn-primary:hover {
+  color: #F4F760;
+  background-color: #6d3d13;
+  border-color: #6d3d13;
+}
+.p-yellow-on-brown{
+  color: #F4F760;
 }
 

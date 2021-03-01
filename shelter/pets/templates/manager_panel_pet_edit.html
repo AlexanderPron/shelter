@@ -5,10 +5,16 @@
 <form action="" method="post">
     {% csrf_token %}
     <table>
-    {{ form.as_table }}
+    {{ pet_form.as_table }}
     </table>
-    <input type="submit" value="Изменить" />
-
+    <input class="btn btn-primary" name="pet-btn" type="submit" value="Изменить" />
+</form>
+<form action="photo" method="post">
+    {% csrf_token %}
+    <table>
+    {{ photo_form.as_table }}
+    </table>
+    <input class="btn btn-primary" name="pet-btn" type="submit" value="Изменить" />
 </form>
 
 <!-- {% include 'paginate.html' %} -->

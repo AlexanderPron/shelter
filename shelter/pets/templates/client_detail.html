@@ -8,25 +8,22 @@
 {% block content %}
   <div class="main-block">
     <h2>Личный кабинет</h2>
-    <div class="row no-gutters lk-menu">
-      <div class="col lk-menu-item">
-        <a href="{{ user.get_absolute_url }}">Мои данные</a>
-        <a href="{% url 'client-profile-edit' user.pk %}">Редактировать профиль</a>
-      </div>
-    </div>
     <div class="row no-gutters main-content">
-      <div class="col-6">
+      <div class="col"></div>
+      <div class="col-5">
         <p><b>Имя:</b> {{user.first_name}}</p>
         <p><b>Фамилия:</b> {{user.last_name}}</p>
         <p><b>Отчество:</b> {{user.patronymic}}</p>
         <p><b>Почта:</b> {{user.email}}</p> 
         <p><b>Телефон:</b> {{user.phone}}</p>
         <p><b>Адрес:</b> {{user.address}}</p>
+        <br>
+        <a href="{% url 'client-profile-edit' user.pk %}" class="btn btn-primary">Редактировать профиль</a>
       </div>
-      <div class="col-6">
+      <div class="col-5">
         {% if shelteredPets %}
-            <p><b>Вы забрали:</b></p>
             <ul class="list-of-sheltered-pet">
+              <p><b>Вы забрали:</b></p>
                 {% for pet in shelteredPets %}
                     <li><a href="{{ pet.pet.get_absolute_url }}">{{ pet.pet.name }}</a> - {{ pet.sheltered_date }}</li>
                 {% endfor %}
@@ -35,6 +32,7 @@
             <p><b>Вы пока никого не забрали</b></p>    
         {% endif %}
       </div>
+      <div class="col"></div>
       </div>
     </div>
   </div>
