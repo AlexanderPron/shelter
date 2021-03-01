@@ -17,6 +17,7 @@ from django import template
 from django.views.generic import TemplateView
 from braces import views
 from django.http import Http404
+import sys
 
 def getPaginationData(request, dataQuerySet, countItemsOnPage):
 # Функция, которая на вход получает запрос с html-страницы, QuerySet результата запроса в базу данных 
@@ -221,6 +222,7 @@ class ManagePetEdit(views.LoginRequiredMixin, views.StaffuserRequiredMixin, View
 
   def post(self, request, *args, **kwargs):
     ctxt = {}
+    pet_id = self.get_object().id
     if 'pet-btn' in request.POST:
       pet_form = PetProfileEditForm(request.POST, request.FILES, instance=self.get_object())
       if pet_form.is_valid():
@@ -230,10 +232,9 @@ class ManagePetEdit(views.LoginRequiredMixin, views.StaffuserRequiredMixin, View
     elif 'photo-btn' in request.POST:
       photo_form = PetPhotoForm(request.POST, request.FILES)
       if photo_form.is_valid():
-        photo_form.save()
+          photo_form.save()
       else:
         ctxt['photo_form'] = photo_form
-    # ctxt['pet_inst'] = self.get_object()
     return render(request, self.template_name, self.get_context_data(**ctxt))
 
 

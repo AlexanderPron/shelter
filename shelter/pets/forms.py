@@ -46,9 +46,11 @@ class PetProfileEditForm(forms.ModelForm):
         fields = '__all__'
 
 class PetPhotoForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        super(PetPhotoForm, self).__init__(*args, **kwargs)
-        # self.fields['pet'] = forms.CharField(initial=kwargs['pet_inst'])
+    # def __init__(self, *args, **kwargs):
+    #     super(PetPhotoForm, self).__init__(*args, **kwargs)
+        # self.fields['pet'] = forms.CharField(initial=args[0])
+        # self.fields['pet'].queryset = Pet.objects.get(pk=pet_id)
     class Meta:
         model = Photo
         fields = '__all__'
+        # exclude = ['pet']

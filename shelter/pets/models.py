@@ -11,9 +11,9 @@ def path_for_pet_avatar(pet, name):
   return '{}_{}/{}'.format(pet.name, pet.id, name)
 
 def path_for_pet_img(obj, name):
-  print('11111--{}'.format(obj.pet.name))
-  print('22222--{}'.format(obj.pet.id))
-  print('33333--{}'.format(name))
+  # print('11111--{}'.format(obj.pet.name))
+  # print('22222--{}'.format(obj.pet.id))
+  # print('33333--{}'.format(name))
   return '{}_{}/{}'.format(obj.pet.name, obj.pet.id, name)
 
 class Pet(models.Model):
