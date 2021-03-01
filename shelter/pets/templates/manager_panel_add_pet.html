@@ -2,7 +2,7 @@
 {% block manager-page %}
 {% load pet_filters %}
 <!-- {% include 'paginate.html' %} -->
-<form action="" method="post">
+<form enctype="multipart/form-data" method="post" action="" >
     {% csrf_token %}
     <table>
     {{ form.as_table }}

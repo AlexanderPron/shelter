@@ -2,19 +2,19 @@
 {% block manager-page %}
 {% load pet_filters %}
 <!-- {% include 'paginate.html' %} -->
-<form action="" method="post">
+<form enctype="multipart/form-data" method="post" action="" >
     {% csrf_token %}
     <table>
     {{ pet_form.as_table }}
     </table>
     <input class="btn btn-primary" name="pet-btn" type="submit" value="Изменить" />
 </form>
-<form action="photo" method="post">
+<form enctype="multipart/form-data" method="post" action="" >
     {% csrf_token %}
     <table>
     {{ photo_form.as_table }}
     </table>
-    <input class="btn btn-primary" name="pet-btn" type="submit" value="Изменить" />
+    <input class="btn btn-primary" name="photo-btn" type="submit" value="Добавить" />
 </form>
 
 <!-- {% include 'paginate.html' %} -->

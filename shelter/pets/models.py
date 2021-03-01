@@ -11,6 +11,9 @@ def path_for_pet_avatar(pet, name):
   return '{}_{}/{}'.format(pet.name, pet.id, name)
 
 def path_for_pet_img(obj, name):
+  print('11111--{}'.format(obj.pet.name))
+  print('22222--{}'.format(obj.pet.id))
+  print('33333--{}'.format(name))
   return '{}_{}/{}'.format(obj.pet.name, obj.pet.id, name)
 
 class Pet(models.Model):
@@ -77,6 +80,18 @@ class Photo(models.Model):
 
   def __str__(self):
     return self.photo.name.split('/')[1]
+  
+  # def save(self, *args, **kwargs):  # Переопределяем стандартный метод save(чтобы была возможность добавить в название папки id записи (в момент сохранения записи id ещё не присвоено, поэтому, чтобы получить id, сначала сохраняем запись без картинки, затем дозаписываем картинку )
+  #   print(kwargs)
+  #   if self.pk is None:
+  #     saved_image = self.photo
+  #     self.photo = None
+  #     super(Photo, self).save(*args, **kwargs)
+  #     self.photo = saved_image
+  #     if 'force_insert' in kwargs: # Решение из интернета - иногда возникает какой-то баг с дублированием параметра force_insert
+  #       kwargs.pop('force_insert')
+  #   super(Photo, self).save(*args, **kwargs)
+  #   print(kwargs)
 
 
 class Client(AbstractUser):

@@ -41,13 +41,14 @@ class AddShelterPetForm(forms.ModelForm):
         fields = ('pet','owner','sheltered_date')
 
 class PetProfileEditForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        super(PetProfileEditForm, self).__init__(*args, **kwargs)
     class Meta:
         model = Pet
         fields = '__all__'
 
 class PetPhotoForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(PetPhotoForm, self).__init__(*args, **kwargs)
+        # self.fields['pet'] = forms.CharField(initial=kwargs['pet_inst'])
     class Meta:
         model = Photo
         fields = '__all__'

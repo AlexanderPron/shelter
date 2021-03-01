@@ -196,15 +196,8 @@ class ManageShelterPet(views.LoginRequiredMixin, views.StaffuserRequiredMixin, C
   template_name_suffix = 'manager_panel_shelter_pet.html'
   success_url = reverse_lazy('manager_panel')
 
-# class ManagePetEdit(views.LoginRequiredMixin, views.StaffuserRequiredMixin, UpdateView):
-#   model = Pet
-#   template_name = 'manager_panel_pet_edit.html'
-#   template_name_suffix = 'manager_panel_pet_edit.html'
-#   fields = '__all__'
-#   success_url = reverse_lazy('manager_panel')
 
-
-class ManagePetEdit(views.LoginRequiredMixin, views.StaffuserRequiredMixin, UpdateView):
+class ManagePetEdit(views.LoginRequiredMixin, views.StaffuserRequiredMixin, View):
   template_name = 'manager_panel_pet_edit.html'
   template_name_suffix = 'manager_panel_pet_edit.html'
 
@@ -218,9 +211,9 @@ class ManagePetEdit(views.LoginRequiredMixin, views.StaffuserRequiredMixin, Upda
   def get_context_data(self, **kwargs):
     kwargs['pet'] = self.get_object()
     if 'pet_form' not in kwargs:
-        kwargs['pet_form'] = PetProfileEditForm()
+        kwargs['pet_form'] = PetProfileEditForm(instance=kwargs['pet'])
     if 'photo_form' not in kwargs:
-        kwargs['photo_form'] = PetPhotoForm()
+        kwargs['photo_form'] = PetPhotoForm(instance=kwargs['pet'])
     return kwargs
 
   def get(self, request, *args, **kwargs):
@@ -229,17 +222,18 @@ class ManagePetEdit(views.LoginRequiredMixin, views.StaffuserRequiredMixin, Upda
   def post(self, request, *args, **kwargs):
     ctxt = {}
     if 'pet-btn' in request.POST:
-      pet_form = PetProfileEditForm(request.POST, instance=self.get_object())
+      pet_form = PetProfileEditForm(request.POST, request.FILES, instance=self.get_object())
       if pet_form.is_valid():
         pet_form.save()
       else:
         ctxt['pet_form'] = pet_form
     elif 'photo-btn' in request.POST:
-      photo_form = PetPhotoForm(request.POST)
+      photo_form = PetPhotoForm(request.POST, request.FILES)
       if photo_form.is_valid():
         photo_form.save()
       else:
         ctxt['photo_form'] = photo_form
+    # ctxt['pet_inst'] = self.get_object()
     return render(request, self.template_name, self.get_context_data(**ctxt))
 
 
