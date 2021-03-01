@@ -228,7 +228,6 @@ class ManagePetEdit(views.LoginRequiredMixin, views.StaffuserRequiredMixin, Upda
 
   def post(self, request, *args, **kwargs):
     ctxt = {}
-    self.object = self.get_object()
     if 'pet-btn' in request.POST:
       pet_form = PetProfileEditForm(request.POST, instance=self.get_object())
       if pet_form.is_valid():
