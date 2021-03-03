@@ -222,9 +222,9 @@ class ManagePetEdit(views.LoginRequiredMixin, views.StaffuserRequiredMixin, View
 
   def post(self, request, *args, **kwargs):
     ctxt = {}
-    pet_id = self.get_object().id
+    pet_inst = self.get_object()
     if 'pet-btn' in request.POST:
-      pet_form = PetProfileEditForm(request.POST, request.FILES, instance=self.get_object())
+      pet_form = PetProfileEditForm(request.POST, request.FILES, instance=pet_inst)
       if pet_form.is_valid():
         pet_form.save()
       else:
@@ -232,7 +232,7 @@ class ManagePetEdit(views.LoginRequiredMixin, views.StaffuserRequiredMixin, View
     elif 'photo-btn' in request.POST:
       photo_form = PetPhotoForm(request.POST, request.FILES)
       if photo_form.is_valid():
-          photo_form.save()
+        photo_form.save(pet_inst.id)
       else:
         ctxt['photo_form'] = photo_form
     return render(request, self.template_name, self.get_context_data(**ctxt))
