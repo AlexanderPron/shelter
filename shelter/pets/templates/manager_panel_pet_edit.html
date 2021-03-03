@@ -12,7 +12,14 @@
 <form enctype="multipart/form-data" method="post" action="" >
     {% csrf_token %}
     <table>
-    {{ photo_form.as_table }}
+    <!-- {{ photo_form.as_table }} -->
+    <tr>
+        <td><input class="" name="pet-id" type="hidden" value="{{ pet.id }}"/></td>
+    </tr>
+    <tr>
+        <td>Добавить картинку</td>
+        <td><input class="" name="pet-img" type="file" accept=".png, .jpg, .jpeg"/></td>
+    </tr>
     </table>
     <input class="btn btn-primary" name="photo-btn" type="submit" value="Добавить" />
 </form>

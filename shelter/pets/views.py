@@ -232,7 +232,7 @@ class ManagePetEdit(views.LoginRequiredMixin, views.StaffuserRequiredMixin, View
     elif 'photo-btn' in request.POST:
       photo_form = PetPhotoForm(request.POST, request.FILES)
       if photo_form.is_valid():
-        photo_form.save(pet_inst.id)
+        photo_form.save(request.POST['pet-id'], request.FILES['pet-img'])
       else:
         ctxt['photo_form'] = photo_form
     return render(request, self.template_name, self.get_context_data(**ctxt))
