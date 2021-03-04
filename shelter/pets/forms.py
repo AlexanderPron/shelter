@@ -1,6 +1,6 @@
 from django import forms
 from django.core import validators
-from .models import Client, ShelteredPets, Pet, Client, Photo
+from .models import Client, ShelteredPets, Pet, Client, Photo, path_for_pet_img
 from datetime import date
 import datetime
 from django.contrib.admin.widgets import AdminDateWidget
@@ -46,12 +46,23 @@ class PetProfileEditForm(forms.ModelForm):
         fields = '__all__'
 
 class PetPhotoForm(forms.ModelForm):
+    # pet = forms.CharField(validators=[validators.validate_slug], label='Логин', max_length=100)
+    # photo = forms.ImageField(upload_to=path_for_pet_img, validators=[validators.validate_image_file_extension], blank=True, verbose_name="Фото")
+    # uplaod_date = forms.CharField(validators=[validators.validate_email], label='Почта', max_length=100, required = True)
+
+    def clean(self, *args, **kwargs):
+        cleaned_data = super().clean()
+        print(cleaned_data)
+        print(args)
+        print(kwargs)
+        return cleaned_data
     def save(self, *args, **kwargs):
         pet_photo_form = super(PetPhotoForm, self).save()
         pet_photo_form.pet = Pet.objects.get(id = args[0])
         pet_photo_form.photo = args[1]
         pet_photo_form.save()
         return pet_photo_form
+
     class Meta:
         model = Photo
         fields = '__all__'
