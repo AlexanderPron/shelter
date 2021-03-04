@@ -6,6 +6,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.contrib.auth.models import AbstractUser
 from django.core import validators
+from django.core.validators import validate_image_file_extension
 
 def path_for_pet_avatar(pet, name):
   return '{}_{}/{}'.format(pet.name, pet.id, name)
@@ -62,8 +63,8 @@ class Pet(models.Model):
     super(Pet, self).save(*args, **kwargs)
 
 class Photo(models.Model):
-  pet = models.ForeignKey(Pet, on_delete = models.CASCADE, related_name='photos', blank=True, null=True)
-  photo = models.ImageField(upload_to=path_for_pet_img, validators=[validators.validate_image_file_extension], blank=True, verbose_name="Фото")
+  pet = models.ForeignKey(Pet, on_delete = models.CASCADE, related_name='photos', verbose_name='Питомец')
+  photo = models.ImageField(upload_to=path_for_pet_img, validators=[validate_image_file_extension], verbose_name="Фото")
   uplaod_date = models.DateField(auto_now=True, verbose_name='Дата загрузки фото')
 
   class Meta:

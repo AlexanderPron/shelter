@@ -46,7 +46,9 @@ class PetProfileEditForm(forms.ModelForm):
         fields = '__all__'
 
 class PetPhotoForm(forms.ModelForm):
-    # pet = forms.CharField(validators=[validators.validate_slug], label='Логин', max_length=100)
+    # def __init__(self, *args, **kwargs):
+    #     super(PetPhotoForm, self).__init__(*args, **kwargs)
+    #     self.fields['pet'] = forms.CharField(initial=kwargs['instance'], label='Питомец')
     # photo = forms.ImageField(upload_to=path_for_pet_img, validators=[validators.validate_image_file_extension], blank=True, verbose_name="Фото")
     # uplaod_date = forms.CharField(validators=[validators.validate_email], label='Почта', max_length=100, required = True)
 
@@ -66,3 +68,4 @@ class PetPhotoForm(forms.ModelForm):
     class Meta:
         model = Photo
         fields = '__all__'
+        # fields = ('photo',)
