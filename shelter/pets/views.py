@@ -93,7 +93,7 @@ def client_detail(request, pk):
   if ((str(request.user.pk) == pk) or request.user.is_staff ):
     template = loader.get_template('client_detail.html')
     
-    shelteredPets = ShelteredPets.objects.all().filter(id = pk)
+    shelteredPets = ShelteredPets.objects.all().filter(owner_id = pk)
     data_list = {
       "user" : curr_user,
       "shelteredPets": shelteredPets,
