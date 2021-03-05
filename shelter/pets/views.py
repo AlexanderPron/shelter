@@ -210,11 +210,12 @@ class ManagePetEdit(views.LoginRequiredMixin, views.StaffuserRequiredMixin, View
     return obj
 
   def get_context_data(self, **kwargs):
-    kwargs['pet'] = self.get_object()
+    curr_pet = self.get_object()
+    kwargs['pet'] = curr_pet
     if 'pet_form' not in kwargs:
         kwargs['pet_form'] = PetProfileEditForm(instance=kwargs['pet'])
     if 'photo_form' not in kwargs:
-        kwargs['photo_form'] = PetPhotoForm(instance=kwargs['pet'])
+        kwargs['photo_form'] = PetPhotoForm(initial={'pet':curr_pet}, instance=kwargs['pet'])
     return kwargs
 
   def get(self, request, *args, **kwargs):
@@ -223,6 +224,7 @@ class ManagePetEdit(views.LoginRequiredMixin, views.StaffuserRequiredMixin, View
   def post(self, request, *args, **kwargs):
     ctxt = {}
     pet_inst = self.get_object()
+    init_dict={'pet': pet_inst}
     if 'pet-btn' in request.POST:
       pet_form = PetProfileEditForm(request.POST, request.FILES, instance=pet_inst)
       if pet_form.is_valid():
@@ -230,9 +232,9 @@ class ManagePetEdit(views.LoginRequiredMixin, views.StaffuserRequiredMixin, View
       else:
         ctxt['pet_form'] = pet_form
     elif 'photo-btn' in request.POST:
-      photo_form = PetPhotoForm(request.POST, request.FILES)
+      photo_form = PetPhotoForm(request.POST or None, request.FILES or None, initial=init_dict)
       if photo_form.is_valid():
-        photo_form.save(request.POST['pet-id'], request.FILES['pet-img'])
+        photo_form.save()
       else:
         ctxt['photo_form'] = photo_form
     return render(request, self.template_name, self.get_context_data(**ctxt))

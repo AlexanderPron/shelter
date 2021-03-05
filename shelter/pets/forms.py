@@ -46,26 +46,43 @@ class PetProfileEditForm(forms.ModelForm):
         fields = '__all__'
 
 class PetPhotoForm(forms.ModelForm):
+    class Meta:
+        model = Photo
+        fields = '__all__'
+        widgets = {'pet': forms.HiddenInput()}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     # def __init__(self, *args, **kwargs):
     #     super(PetPhotoForm, self).__init__(*args, **kwargs)
     #     self.fields['pet'] = forms.CharField(initial=kwargs['instance'], label='Питомец')
     # photo = forms.ImageField(upload_to=path_for_pet_img, validators=[validators.validate_image_file_extension], blank=True, verbose_name="Фото")
     # uplaod_date = forms.CharField(validators=[validators.validate_email], label='Почта', max_length=100, required = True)
 
-    def clean(self, *args, **kwargs):
-        cleaned_data = super().clean()
-        print(cleaned_data)
-        print(args)
-        print(kwargs)
-        return cleaned_data
-    def save(self, *args, **kwargs):
-        pet_photo_form = super(PetPhotoForm, self).save()
-        pet_photo_form.pet = Pet.objects.get(id = args[0])
-        pet_photo_form.photo = args[1]
-        pet_photo_form.save()
-        return pet_photo_form
-
-    class Meta:
-        model = Photo
-        fields = '__all__'
-        # fields = ('photo',)
+    # def clean(self, *args, **kwargs):
+    #     cleaned_data = super().clean()
+    #     print(cleaned_data)
+    #     print(args)
+    #     print(kwargs)
+    #     return cleaned_data
+    # def save(self, *args, **kwargs):
+    #     pet_photo_form = super(PetPhotoForm, self).save()
+    #     print(args)
+    #     pet_photo_form.pet = Pet.objects.get(id = args[0])
+    #     pet_photo_form.photo = args[1]
+    #     pet_photo_form.save()
+    #     return pet_photo_form
